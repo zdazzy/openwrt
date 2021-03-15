@@ -17,7 +17,7 @@ Signed-off-by: Pablo Neira Ayuso <pablo@netfilter.org>
 
 --- a/net/dsa/slave.c
 +++ b/net/dsa/slave.c
-@@ -1251,14 +1251,32 @@ static int dsa_slave_setup_tc_block(stru
+@@ -1278,14 +1278,32 @@ static int dsa_slave_setup_tc_block(stru
  	}
  }
  
