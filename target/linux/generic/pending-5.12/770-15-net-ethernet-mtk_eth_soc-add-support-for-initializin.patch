@@ -26,7 +26,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  obj-$(CONFIG_NET_MEDIATEK_STAR_EMAC) += mtk_star_emac.o
 --- a/drivers/net/ethernet/mediatek/mtk_eth_soc.c
 +++ b/drivers/net/ethernet/mediatek/mtk_eth_soc.c
-@@ -2284,12 +2284,17 @@ static int mtk_open(struct net_device *d
+@@ -2305,12 +2305,17 @@ static int mtk_open(struct net_device *d
  
  	/* we run 2 netdevs on the same dma ring so we only bring it up once */
  	if (!refcount_read(&eth->dma_refcnt)) {
@@ -46,7 +46,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  
  		napi_enable(&eth->tx_napi);
  		napi_enable(&eth->rx_napi);
-@@ -2359,6 +2364,9 @@ static int mtk_stop(struct net_device *d
+@@ -2380,6 +2385,9 @@ static int mtk_stop(struct net_device *d
  
  	mtk_dma_free(eth);
  
@@ -56,7 +56,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  	return 0;
  }
  
-@@ -3181,6 +3189,13 @@ static int mtk_probe(struct platform_dev
+@@ -3202,6 +3210,13 @@ static int mtk_probe(struct platform_dev
  			goto err_free_dev;
  	}
  
@@ -70,7 +70,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  	for (i = 0; i < MTK_MAX_DEVS; i++) {
  		if (!eth->netdev[i])
  			continue;
-@@ -3255,6 +3270,7 @@ static const struct mtk_soc_data mt7621_
+@@ -3276,6 +3291,7 @@ static const struct mtk_soc_data mt7621_
  	.hw_features = MTK_HW_FEATURES,
  	.required_clks = MT7621_CLKS_BITMAP,
  	.required_pctl = false,
@@ -78,7 +78,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  };
  
  static const struct mtk_soc_data mt7622_data = {
-@@ -3263,6 +3279,7 @@ static const struct mtk_soc_data mt7622_
+@@ -3284,6 +3300,7 @@ static const struct mtk_soc_data mt7622_
  	.hw_features = MTK_HW_FEATURES,
  	.required_clks = MT7622_CLKS_BITMAP,
  	.required_pctl = false,
@@ -104,7 +104,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  #define MTK_GDMA_DROP_ALL       0x7777
  
  /* Unicast Filter MAC Address Register - Low */
-@@ -309,6 +311,12 @@
+@@ -322,6 +324,12 @@
  #define RX_DMA_VID(_x)		((_x) & 0xfff)
  
  /* QDMA descriptor rxd4 */
@@ -117,7 +117,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  #define RX_DMA_L4_VALID		BIT(24)
  #define RX_DMA_L4_VALID_PDMA	BIT(30)		/* when PDMA is used */
  #define RX_DMA_FPORT_SHIFT	19
-@@ -813,6 +821,7 @@ struct mtk_soc_data {
+@@ -833,6 +841,7 @@ struct mtk_soc_data {
  	u32		caps;
  	u32		required_clks;
  	bool		required_pctl;
@@ -125,7 +125,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  	netdev_features_t hw_features;
  };
  
-@@ -924,6 +933,8 @@ struct mtk_eth {
+@@ -944,6 +953,8 @@ struct mtk_eth {
  	u32				tx_int_status_reg;
  	u32				rx_dma_l4_valid;
  	int				ip_align;

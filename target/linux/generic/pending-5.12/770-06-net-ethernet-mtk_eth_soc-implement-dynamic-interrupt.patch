@@ -20,7 +20,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  	  MediaTek SoC family.
 --- a/drivers/net/ethernet/mediatek/mtk_eth_soc.c
 +++ b/drivers/net/ethernet/mediatek/mtk_eth_soc.c
-@@ -1232,12 +1232,13 @@ static void mtk_update_rx_cpu_idx(struct
+@@ -1253,12 +1253,13 @@ static void mtk_update_rx_cpu_idx(struct
  static int mtk_poll_rx(struct napi_struct *napi, int budget,
  		       struct mtk_eth *eth)
  {
@@ -35,7 +35,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  
  	while (done < budget) {
  		struct net_device *netdev;
-@@ -1311,6 +1312,7 @@ static int mtk_poll_rx(struct napi_struc
+@@ -1332,6 +1333,7 @@ static int mtk_poll_rx(struct napi_struc
  		else
  			skb_checksum_none_assert(skb);
  		skb->protocol = eth_type_trans(skb, netdev);
@@ -43,7 +43,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  
  		if (netdev->features & NETIF_F_HW_VLAN_CTAG_RX &&
  		    (trxd.rxd2 & RX_DMA_VTAG))
-@@ -1342,6 +1344,12 @@ rx_done:
+@@ -1363,6 +1365,12 @@ rx_done:
  		mtk_update_rx_cpu_idx(eth);
  	}
  
@@ -56,7 +56,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  	return done;
  }
  
-@@ -1434,6 +1442,7 @@ static int mtk_poll_tx_pdma(struct mtk_e
+@@ -1455,6 +1463,7 @@ static int mtk_poll_tx_pdma(struct mtk_e
  static int mtk_poll_tx(struct mtk_eth *eth, int budget)
  {
  	struct mtk_tx_ring *ring = &eth->tx_ring;
@@ -64,7 +64,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  	unsigned int done[MTK_MAX_DEVS];
  	unsigned int bytes[MTK_MAX_DEVS];
  	int total = 0, i;
-@@ -1451,8 +1460,14 @@ static int mtk_poll_tx(struct mtk_eth *e
+@@ -1472,8 +1481,14 @@ static int mtk_poll_tx(struct mtk_eth *e
  			continue;
  		netdev_completed_queue(eth->netdev[i], done[i], bytes[i]);
  		total += done[i];
@@ -79,7 +79,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  	if (mtk_queue_stopped(eth) &&
  	    (atomic_read(&ring->free_count) > ring->thresh))
  		mtk_wake_queue(eth);
-@@ -2127,6 +2142,7 @@ static irqreturn_t mtk_handle_irq_rx(int
+@@ -2148,6 +2163,7 @@ static irqreturn_t mtk_handle_irq_rx(int
  {
  	struct mtk_eth *eth = _eth;
  
@@ -87,7 +87,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  	if (likely(napi_schedule_prep(&eth->rx_napi))) {
  		__napi_schedule(&eth->rx_napi);
  		mtk_rx_irq_disable(eth, MTK_RX_DONE_INT);
-@@ -2139,6 +2155,7 @@ static irqreturn_t mtk_handle_irq_tx(int
+@@ -2160,6 +2176,7 @@ static irqreturn_t mtk_handle_irq_tx(int
  {
  	struct mtk_eth *eth = _eth;
  
@@ -95,7 +95,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  	if (likely(napi_schedule_prep(&eth->tx_napi))) {
  		__napi_schedule(&eth->tx_napi);
  		mtk_tx_irq_disable(eth, MTK_TX_DONE_INT);
-@@ -2315,6 +2332,9 @@ static int mtk_stop(struct net_device *d
+@@ -2336,6 +2353,9 @@ static int mtk_stop(struct net_device *d
  	napi_disable(&eth->tx_napi);
  	napi_disable(&eth->rx_napi);
  
@@ -105,7 +105,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  	if (MTK_HAS_CAPS(eth->soc->caps, MTK_QDMA))
  		mtk_stop_dma(eth, MTK_QDMA_GLO_CFG);
  	mtk_stop_dma(eth, MTK_PDMA_GLO_CFG);
-@@ -2364,6 +2384,64 @@ err_disable_clks:
+@@ -2385,6 +2405,64 @@ err_disable_clks:
  	return ret;
  }
  
@@ -170,7 +170,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  static int mtk_hw_init(struct mtk_eth *eth)
  {
  	int i, val, ret;
-@@ -2385,9 +2463,6 @@ static int mtk_hw_init(struct mtk_eth *e
+@@ -2406,9 +2484,6 @@ static int mtk_hw_init(struct mtk_eth *e
  			goto err_disable_pm;
  		}
  
@@ -180,7 +180,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  		/* disable delay and normal interrupt */
  		mtk_tx_irq_disable(eth, ~0);
  		mtk_rx_irq_disable(eth, ~0);
-@@ -2426,11 +2501,10 @@ static int mtk_hw_init(struct mtk_eth *e
+@@ -2447,11 +2522,10 @@ static int mtk_hw_init(struct mtk_eth *e
  	/* Enable RX VLan Offloading */
  	mtk_w32(eth, 1, MTK_CDMP_EG_CTRL);
  
@@ -194,7 +194,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  	mtk_tx_irq_disable(eth, ~0);
  	mtk_rx_irq_disable(eth, ~0);
  
-@@ -2967,6 +3041,13 @@ static int mtk_probe(struct platform_dev
+@@ -2988,6 +3062,13 @@ static int mtk_probe(struct platform_dev
  	spin_lock_init(&eth->page_lock);
  	spin_lock_init(&eth->tx_irq_lock);
  	spin_lock_init(&eth->rx_irq_lock);
@@ -260,7 +260,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  
  /* QDMA Interrupt grouping registers */
  #define MTK_QDMA_INT_GRP1	0x1a20
-@@ -898,6 +904,18 @@ struct mtk_eth {
+@@ -918,6 +924,18 @@ struct mtk_eth {
  
  	const struct mtk_soc_data	*soc;
  

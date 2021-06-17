@@ -11,7 +11,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
 
 --- a/drivers/net/ethernet/mediatek/mtk_eth_soc.c
 +++ b/drivers/net/ethernet/mediatek/mtk_eth_soc.c
-@@ -1362,7 +1362,7 @@ static int mtk_poll_tx_qdma(struct mtk_e
+@@ -1383,7 +1383,7 @@ static int mtk_poll_tx_qdma(struct mtk_e
  	struct mtk_tx_buf *tx_buf;
  	u32 cpu, dma;
  
@@ -20,7 +20,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  	dma = mtk_r32(eth, MTK_QTX_DRX_PTR);
  
  	desc = mtk_qdma_phys_to_virt(ring, cpu);
-@@ -1396,6 +1396,7 @@ static int mtk_poll_tx_qdma(struct mtk_e
+@@ -1417,6 +1417,7 @@ static int mtk_poll_tx_qdma(struct mtk_e
  		cpu = next_cpu;
  	}
  
@@ -28,7 +28,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  	mtk_w32(eth, cpu, MTK_QTX_CRX_PTR);
  
  	return budget;
-@@ -1596,6 +1597,7 @@ static int mtk_tx_alloc(struct mtk_eth *
+@@ -1617,6 +1618,7 @@ static int mtk_tx_alloc(struct mtk_eth *
  	atomic_set(&ring->free_count, MTK_DMA_SIZE - 2);
  	ring->next_free = &ring->dma[0];
  	ring->last_free = &ring->dma[MTK_DMA_SIZE - 1];
@@ -36,7 +36,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  	ring->thresh = MAX_SKB_FRAGS;
  
  	/* make sure that all changes to the dma ring are flushed before we
-@@ -1609,9 +1611,7 @@ static int mtk_tx_alloc(struct mtk_eth *
+@@ -1630,9 +1632,7 @@ static int mtk_tx_alloc(struct mtk_eth *
  		mtk_w32(eth,
  			ring->phys + ((MTK_DMA_SIZE - 1) * sz),
  			MTK_QTX_CRX_PTR);
@@ -49,7 +49,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  	} else {
 --- a/drivers/net/ethernet/mediatek/mtk_eth_soc.h
 +++ b/drivers/net/ethernet/mediatek/mtk_eth_soc.h
-@@ -630,6 +630,7 @@ struct mtk_tx_buf {
+@@ -650,6 +650,7 @@ struct mtk_tx_buf {
   * @phys:		The physical addr of tx_buf
   * @next_free:		Pointer to the next free descriptor
   * @last_free:		Pointer to the last free descriptor
@@ -57,7 +57,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
   * @thresh:		The threshold of minimum amount of free descriptors
   * @free_count:		QDMA uses a linked list. Track how many free descriptors
   *			are present
-@@ -640,6 +641,7 @@ struct mtk_tx_ring {
+@@ -660,6 +661,7 @@ struct mtk_tx_ring {
  	dma_addr_t phys;
  	struct mtk_tx_dma *next_free;
  	struct mtk_tx_dma *last_free;

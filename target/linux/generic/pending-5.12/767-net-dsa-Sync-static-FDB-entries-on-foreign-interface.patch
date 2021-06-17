@@ -28,7 +28,7 @@ Signed-off-by: Tobias Waldekranz <tobias@waldekranz.com>
 
 --- a/net/dsa/slave.c
 +++ b/net/dsa/slave.c
-@@ -2333,9 +2333,12 @@ static int dsa_slave_switchdev_event(str
+@@ -2335,9 +2335,12 @@ static int dsa_slave_switchdev_event(str
  			else if (!fdb_info->added_by_user)
  				return NOTIFY_OK;
  		} else {
@@ -44,7 +44,7 @@ Signed-off-by: Tobias Waldekranz <tobias@waldekranz.com>
  			 */
  			struct net_device *br_dev;
  			struct dsa_slave_priv *p;
-@@ -2357,7 +2360,8 @@ static int dsa_slave_switchdev_event(str
+@@ -2359,7 +2362,8 @@ static int dsa_slave_switchdev_event(str
  
  			dp = p->dp->cpu_dp;
  

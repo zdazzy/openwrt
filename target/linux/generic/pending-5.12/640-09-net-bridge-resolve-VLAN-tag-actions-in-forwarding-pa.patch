@@ -109,7 +109,7 @@ Signed-off-by: Pablo Neira Ayuso <pablo@netfilter.org>
  
 --- a/net/bridge/br_private.h
 +++ b/net/bridge/br_private.h
-@@ -1118,6 +1118,13 @@ void br_vlan_notify(const struct net_bri
+@@ -1119,6 +1119,13 @@ void br_vlan_notify(const struct net_bri
  bool br_vlan_can_enter_range(const struct net_bridge_vlan *v_curr,
  			     const struct net_bridge_vlan *range_end);
  
@@ -123,7 +123,7 @@ Signed-off-by: Pablo Neira Ayuso <pablo@netfilter.org>
  static inline struct net_bridge_vlan_group *br_vlan_group(
  					const struct net_bridge *br)
  {
-@@ -1276,6 +1283,19 @@ static inline int nbp_get_num_vlan_infos
+@@ -1277,6 +1284,19 @@ static inline int nbp_get_num_vlan_infos
  {
  	return 0;
  }
