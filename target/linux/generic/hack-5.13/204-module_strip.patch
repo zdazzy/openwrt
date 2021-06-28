@@ -104,7 +104,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  config MODULES_TREE_LOOKUP
 --- a/kernel/module.c
 +++ b/kernel/module.c
-@@ -3201,9 +3201,11 @@ static int setup_load_info(struct load_i
+@@ -3205,9 +3205,11 @@ static int setup_load_info(struct load_i
  
  static int check_modinfo(struct module *mod, struct load_info *info, int flags)
  {
@@ -117,7 +117,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  	if (flags & MODULE_INIT_IGNORE_VERMAGIC)
  		modmagic = NULL;
  
-@@ -3224,6 +3226,7 @@ static int check_modinfo(struct module *
+@@ -3228,6 +3230,7 @@ static int check_modinfo(struct module *
  				mod->name);
  		add_taint_module(mod, TAINT_OOT_MODULE, LOCKDEP_STILL_OK);
  	}
