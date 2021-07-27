@@ -1,0 +1,17 @@
+From 7b0eddddefb0c95b5f695d1ef69d7c473390df58 Mon Sep 17 00:00:00 2001
+From: Marty Jones <mj8263788@gmail.com>
+Date: Tue, 27 Jul 2021 03:54:56 -0400
+Subject: [PATCH] fix kernel 5.14
+https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/include/linux/module.h?h=next-20210726&id=6417f03132a6952cd17ddd8eaddbac92b61b17e0
+---
+ hif/pcie/pcie.c | 1 -
+ 1 file changed, 1 deletion(-)
+
+--- a/hif/pcie/pcie.c
++++ b/hif/pcie/pcie.c
+@@ -1641,5 +1641,4 @@ MODULE_DESCRIPTION(PCIE_DRV_DESC);
+ MODULE_VERSION(PCIE_DRV_VERSION);
+ MODULE_AUTHOR("Marvell Semiconductor, Inc.");
+ MODULE_LICENSE("GPL v2");
+-MODULE_SUPPORTED_DEVICE(PCIE_DEV_NAME);
+ MODULE_DEVICE_TABLE(pci, pcie_id_tbl);
