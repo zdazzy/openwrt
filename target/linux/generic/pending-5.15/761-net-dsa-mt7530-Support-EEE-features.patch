@@ -9,7 +9,7 @@ Content-Transfer-Encoding: 8bit
 Signed-off-by: René van Dorst <opensource@vdorst.com>
 --- a/drivers/net/dsa/mt7530.c
 +++ b/drivers/net/dsa/mt7530.c
-@@ -2831,9 +2831,13 @@ static void mt753x_phylink_mac_link_up(s
+@@ -2825,9 +2825,13 @@ static void mt753x_phylink_mac_link_up(s
  	switch (speed) {
  	case SPEED_1000:
  		mcr |= PMCR_FORCE_SPEED_1000;
@@ -23,7 +23,7 @@ Signed-off-by: René van Dorst <opensource@vdorst.com>
  		break;
  	}
  	if (duplex == DUPLEX_FULL) {
-@@ -3110,6 +3114,54 @@ static int mt753x_set_mac_eee(struct dsa
+@@ -3104,6 +3108,54 @@ static int mt753x_set_mac_eee(struct dsa
  
  	return 0;
  }
