@@ -1,0 +1,24 @@
+From 18453b4031eaa835910b539b1cbc241388d1d654 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Carlos=20Garc=C3=A9s?= <CGarces@users.noreply.github.com>
+Date: Mon, 11 Jan 2021 11:21:29 +0100
+Subject: [PATCH] Fix cfg80211_ch_switch_started_notify on kernel 5.11-rc3
+
+See https://github.com/torvalds/linux/commit/669b84134a2be14d333d4f82b65943d467404f87
+---
+ os_dep/linux/ioctl_cfg80211.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+--- a/os_dep/linux/ioctl_cfg80211.c
++++ b/os_dep/linux/ioctl_cfg80211.c
+@@ -455,7 +455,11 @@ u8 rtw_cfg80211_ch_switch_notify(_adapte
+ 
+ #if (LINUX_VERSION_CODE >= KERNEL_VERSION(3, 19, 0))
+ 	if (started) {
++#if (LINUX_VERSION_CODE >= KERNEL_VERSION(5, 11, 0))
++		cfg80211_ch_switch_started_notify(adapter->pnetdev, &chdef, 0, false);
++#else
+ 		cfg80211_ch_switch_started_notify(adapter->pnetdev, &chdef, 0);
++#endif
+ 		goto exit;
+ 	}
+ #endif
