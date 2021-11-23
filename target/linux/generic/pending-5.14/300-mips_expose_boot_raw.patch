@@ -19,7 +19,7 @@ Acked-by: Rob Landley <rob@landley.net>
  config CEVT_BCM1480
  	bool
  
-@@ -3199,6 +3196,18 @@ choice
+@@ -3200,6 +3197,18 @@ choice
  		bool "Extend builtin kernel arguments with bootloader arguments"
  endchoice
  
