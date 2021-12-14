@@ -65,7 +65,7 @@ Signed-off-by: Daniel Golle <daniel@makrotopia.org>
  /**
   *	ata_build_rw_tf - Build ATA taskfile for given read/write request
   *	@tf: Target ATA taskfile
-@@ -4634,6 +4647,9 @@ struct ata_queued_cmd *ata_qc_new_init(s
+@@ -4636,6 +4649,9 @@ struct ata_queued_cmd *ata_qc_new_init(s
  		if (tag < 0)
  			return NULL;
  	}
@@ -75,7 +75,7 @@ Signed-off-by: Daniel Golle <daniel@makrotopia.org>
  
  	qc = __ata_qc_from_tag(ap, tag);
  	qc->tag = qc->hw_tag = tag;
-@@ -5412,6 +5428,9 @@ struct ata_port *ata_port_alloc(struct a
+@@ -5414,6 +5430,9 @@ struct ata_port *ata_port_alloc(struct a
  	ap->stats.unhandled_irq = 1;
  	ap->stats.idle_irq = 1;
  #endif
@@ -85,7 +85,7 @@ Signed-off-by: Daniel Golle <daniel@makrotopia.org>
  	ata_sff_port_init(ap);
  
  	return ap;
-@@ -5447,6 +5466,12 @@ static void ata_host_release(struct kref
+@@ -5449,6 +5468,12 @@ static void ata_host_release(struct kref
  
  		kfree(ap->pmp_link);
  		kfree(ap->slave_link);
@@ -98,7 +98,7 @@ Signed-off-by: Daniel Golle <daniel@makrotopia.org>
  		kfree(ap);
  		host->ports[i] = NULL;
  	}
-@@ -5853,7 +5878,23 @@ int ata_host_register(struct ata_host *h
+@@ -5855,7 +5880,23 @@ int ata_host_register(struct ata_host *h
  		host->ports[i]->print_id = atomic_inc_return(&ata_print_id);
  		host->ports[i]->local_port_no = i + 1;
  	}
