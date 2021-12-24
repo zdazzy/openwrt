@@ -65,3 +65,13 @@ define Device/radxa_rock-pi-4
 	kmod-brcmfmac wpad-basic-wolfssl
 endef
 TARGET_DEVICES += radxa_rock-pi-4
+
+define Device/pine64_quartz64-a
+  DEVICE_VENDOR := Pine64
+  DEVICE_MODEL := QUARTZ64
+  SOC := rk3566
+  SUPPORTED_DEVICES := pine64,quartz64-a
+  UBOOT_DEVICE_NAME := quartz64-a-rk3566
+  IMAGE/sysupgrade.img.gz := boot-common | boot-script | pine64-img | gzip | append-metadata
+endef
+TARGET_DEVICES += pine64_quartz64-a
