@@ -77,7 +77,7 @@
  
  				regulator-state-mem {
  					regulator-off-in-suspend;
-@@ -584,11 +588,6 @@
+@@ -586,11 +590,6 @@
  	rgmii_phy1: ethernet-phy@0 {
  		compatible = "ethernet-phy-ieee802.3-c22";
  		reg = <0x0>;
@@ -89,7 +89,7 @@
  	};
  };
  
-@@ -793,7 +792,7 @@
+@@ -794,7 +793,7 @@
  };
  
  &usb_host0_xhci {
