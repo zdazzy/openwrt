@@ -100,7 +100,7 @@
  
 --- a/drivers/mtd/ubi/block.c
 +++ b/drivers/mtd/ubi/block.c
-@@ -410,6 +410,9 @@ int ubiblock_create(struct ubi_volume_in
+@@ -413,6 +413,9 @@ int ubiblock_create(struct ubi_volume_in
  	}
  	gd->flags |= GENHD_FL_NO_PART;
  	gd->private_data = dev;
