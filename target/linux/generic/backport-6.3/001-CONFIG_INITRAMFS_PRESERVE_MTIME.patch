@@ -19,7 +19,7 @@
  	default CC_OPTIMIZE_FOR_PERFORMANCE
 --- a/init/initramfs.c
 +++ b/init/initramfs.c
-@@ -128,17 +128,15 @@ static void __init free_hash(void)
+@@ -121,17 +121,15 @@ static void __init free_hash(void)
  	}
  }
  
@@ -44,7 +44,7 @@
  }
  
  static __initdata LIST_HEAD(dir_list);
-@@ -171,12 +169,6 @@ static void __init dir_utime(void)
+@@ -164,12 +162,6 @@ static void __init dir_utime(void)
  		kfree(de);
  	}
  }
@@ -57,7 +57,7 @@
  
  static __initdata time64_t mtime;
  
-@@ -408,10 +400,14 @@ static int __init do_name(void)
+@@ -401,10 +393,14 @@ static int __init do_name(void)
  static int __init do_copy(void)
  {
  	if (byte_count >= body_len) {
