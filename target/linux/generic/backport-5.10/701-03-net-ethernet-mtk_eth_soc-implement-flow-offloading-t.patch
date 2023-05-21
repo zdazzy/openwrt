@@ -1,0 +1,71 @@
+From: Felix Fietkau <nbd@nbd.name>
+Date: Sat, 5 Feb 2022 18:29:22 +0100
+Subject: [PATCH] net: ethernet: mtk_eth_soc: implement flow offloading
+ to WED devices
+
+This allows hardware flow offloading from Ethernet to WLAN on MT7622 SoC
+
+Co-developed-by: Lorenzo Bianconi <lorenzo@kernel.org>
+Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+Signed-off-by: Felix Fietkau <nbd@nbd.name>
+---
+
+--- a/drivers/net/ethernet/mediatek/mtk_wed.h
++++ b/drivers/net/ethernet/mediatek/mtk_wed.h
+@@ -7,6 +7,7 @@
+ #include <linux/soc/mediatek/mtk_wed.h>
+ #include <linux/debugfs.h>
+ #include <linux/regmap.h>
++#include <linux/netdevice.h>
+ 
+ struct mtk_eth;
+ 
+@@ -27,6 +28,12 @@ struct mtk_wed_hw {
+ 	int index;
+ };
+ 
++struct mtk_wdma_info {
++	u8 wdma_idx;
++	u8 queue;
++	u16 wcid;
++	u8 bss;
++};
+ 
+ #ifdef CONFIG_NET_MEDIATEK_SOC_WED
+ static inline void
+--- a/include/linux/netdevice.h
++++ b/include/linux/netdevice.h
+@@ -852,6 +852,7 @@ enum net_device_path_type {
+ 	DEV_PATH_BRIDGE,
+ 	DEV_PATH_PPPOE,
+ 	DEV_PATH_DSA,
++	DEV_PATH_MTK_WDMA,
+ };
+ 
+ struct net_device_path {
+@@ -877,6 +878,12 @@ struct net_device_path {
+ 			int port;
+ 			u16 proto;
+ 		} dsa;
++		struct {
++			u8 wdma_idx;
++			u8 queue;
++			u16 wcid;
++			u8 bss;
++		} mtk_wdma;
+ 	};
+ };
+ 
+--- a/net/core/dev.c
++++ b/net/core/dev.c
+@@ -890,6 +890,10 @@ int dev_fill_forward_path(const struct n
+ 		if (WARN_ON_ONCE(last_dev == ctx.dev))
+ 			return -1;
+ 	}
++
++	if (!ctx.dev)
++		return ret;
++
+ 	path = dev_fwd_path(stack);
+ 	if (!path)
+ 		return -1;

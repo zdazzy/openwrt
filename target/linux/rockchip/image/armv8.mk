@@ -5,58 +5,34 @@
 # FIT will be loaded at 0x02080000. Leave 16M for that, align it to 2M and load the kernel after it.
 KERNEL_LOADADDR := 0x03200000
 
-define Device/firefly_roc-rk3328-cc
-  DEVICE_VENDOR := Firefly
-  DEVICE_MODEL := ROC-RK3328-CC
-  SOC := rk3328
-  DEVICE_DTS := rockchip/rk3328-roc-cc
-  UBOOT_DEVICE_NAME := roc-cc-rk3328
-  IMAGE/sysupgrade.img.gz := boot-common | boot-script | pine64-img | gzip | append-metadata
+define Device/friendlyelec_nanopi-r6c
+  DEVICE_VENDOR := Friendlyelec
+  DEVICE_MODEL := NanoPi R6C
+  SOC := rk3588s
+  UBOOT_DEVICE_NAME := nanopi-r6c-rk3588
+  IMAGE/sysupgrade.img.gz := boot-common | boot-script nanopi-r6c | pine64-img | gzip | append-metadata
+ DEVICE_PACKAGES := \
+	blkid block-mount blockd btrfs-progs f2fs-tools f2fsck fdisk fixparts fstools gdisk \
+	kmod-ata-ahci kmod-ata-core kmod-fs-autofs4 kmod-fs-btrfs kmod-fs-exfat kmod-fs-exportfs luci-app-ttyd \
+	kmod-fs-ext4 kmod-fs-squashfs kmod-nvme kmod-usb-net-rtl8152 kmod-usb-storage kmod-usb-storage-extras kmod-usb-storage-uas \
+	kmod-usb-xhci-hcd kmod-usb3 losetup lsblk luci luci-proto-wireguard mkf2fs mount-utils parted partx-util pciutils resize2fs \
+	kmod-r8125 usbutils wget-ssl smartmontools luci-app-statistics collectd-mod-cpufreq collectd-mod-sensors collectd-mod-thermal \
+	collectd-mod-conntrack collectd-mod-irq dnsmasq-full -dnsmasq ethtool iperf3-ssl
 endef
-TARGET_DEVICES += firefly_roc-rk3328-cc
+TARGET_DEVICES += friendlyelec_nanopi-r6c
 
-define Device/friendlyarm_nanopi-r2c
-  DEVICE_VENDOR := FriendlyARM
-  DEVICE_MODEL := NanoPi R2C
-  SOC := rk3328
-  IMAGE/sysupgrade.img.gz := boot-common | boot-script | pine64-img | gzip | append-metadata
-  DEVICE_PACKAGES := kmod-usb-net-rtl8152
+define Device/friendlyelec_nanopi-r6s
+  DEVICE_VENDOR := Friendlyelec
+  DEVICE_MODEL := NanoPi R6S
+  SOC := rk3588s
+  UBOOT_DEVICE_NAME := nanopi-r6s-rk3588
+  IMAGE/sysupgrade.img.gz := boot-common | boot-script nanopi-r6c | pine64-img | gzip | append-metadata
+ DEVICE_PACKAGES := \
+	blkid block-mount blockd btrfs-progs f2fs-tools f2fsck fdisk fixparts fstools gdisk \
+	kmod-ata-ahci kmod-ata-core kmod-fs-autofs4 kmod-fs-btrfs kmod-fs-exfat kmod-fs-exportfs luci-app-ttyd \
+	kmod-fs-ext4 kmod-fs-squashfs kmod-nvme kmod-usb-net-rtl8152 kmod-usb-storage kmod-usb-storage-extras kmod-usb-storage-uas \
+	kmod-usb-xhci-hcd kmod-usb3 losetup lsblk luci luci-proto-wireguard mkf2fs mount-utils parted partx-util pciutils resize2fs \
+	kmod-r8125 usbutils wget-ssl smartmontools luci-app-statistics collectd-mod-cpufreq collectd-mod-sensors collectd-mod-thermal \
+	collectd-mod-conntrack collectd-mod-irq dnsmasq-full -dnsmasq ethtool iperf3-ssl
 endef
-TARGET_DEVICES += friendlyarm_nanopi-r2c
-
-define Device/friendlyarm_nanopi-r2s
-  DEVICE_VENDOR := FriendlyARM
-  DEVICE_MODEL := NanoPi R2S
-  SOC := rk3328
-  IMAGE/sysupgrade.img.gz := boot-common | boot-script | pine64-img | gzip | append-metadata
-  DEVICE_PACKAGES := kmod-usb-net-rtl8152
-endef
-TARGET_DEVICES += friendlyarm_nanopi-r2s
-
-define Device/friendlyarm_nanopi-r4s
-  DEVICE_VENDOR := FriendlyARM
-  DEVICE_MODEL := NanoPi R4S
-  DEVICE_VARIANT := 4GB LPDDR4
-  SOC := rk3399
-  IMAGE/sysupgrade.img.gz := boot-common | boot-script | pine64-img | gzip | append-metadata
-  DEVICE_PACKAGES := kmod-r8169
-endef
-TARGET_DEVICES += friendlyarm_nanopi-r4s
-
-define Device/pine64_rockpro64
-  DEVICE_VENDOR := Pine64
-  DEVICE_MODEL := RockPro64
-  SOC := rk3399
-  IMAGE/sysupgrade.img.gz := boot-common | boot-script | pine64-img | gzip | append-metadata
-endef
-TARGET_DEVICES += pine64_rockpro64
-
-define Device/radxa_rock-pi-4a
-  DEVICE_VENDOR := Radxa
-  DEVICE_MODEL := ROCK Pi 4A
-  SOC := rk3399
-  SUPPORTED_DEVICES := radxa,rockpi4a radxa,rockpi4
-  UBOOT_DEVICE_NAME := rock-pi-4-rk3399
-  IMAGE/sysupgrade.img.gz := boot-common | boot-script | pine64-img | gzip | append-metadata
-endef
-TARGET_DEVICES += radxa_rock-pi-4a
+TARGET_DEVICES += friendlyelec_nanopi-r6s

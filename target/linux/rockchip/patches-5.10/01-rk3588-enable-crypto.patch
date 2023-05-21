@@ -1,0 +1,11 @@
+--- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+@@ -4736,7 +4736,7 @@
+ 		clock-names = "aclk", "hclk", "sclk", "pka";
+ 		resets = <&scmi_reset SRST_CRYPTO_CORE>;
+ 		reset-names = "crypto-rst";
+-		status = "disabled";
++		status = "okay";
+ 	};
+ 
+ 	rng: rng@fe378000 {

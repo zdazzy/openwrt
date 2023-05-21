@@ -46,7 +46,6 @@ define KernelPackage/bonding
   SUBMENU:=$(NETWORK_SUPPORT_MENU)
   TITLE:=Ethernet bonding driver
   KCONFIG:=CONFIG_BONDING
-  DEPENDS:=PACKAGE_kmod-tls:kmod-tls
   FILES:=$(LINUX_DIR)/drivers/net/bonding/bonding.ko
   AUTOLOAD:=$(call AutoLoad,40,bonding)
   MODPARAMS.bonding:=max_bonds=0
@@ -1043,24 +1042,6 @@ endef
 
 $(eval $(call KernelPackage,tcp-bbr))
 
-define KernelPackage/tls
-  SUBMENU:=$(NETWORK_SUPPORT_MENU)
-  TITLE:=In-kernel TLS Support with HW Offload
-  KCONFIG:=CONFIG_TLS \
-	CONFIG_TLS_DEVICE=y
-  FILES:=$(LINUX_DIR)/net/tls/tls.ko
-  AUTOLOAD:=$(call AutoProbe,tls)
-endef
-
-define KernelPackage/tls/description
- Kernel module for in-kernel TLS protocol support and hw offload
- (to supported interfaces).
- This allows symmetric encryption handling of the TLS protocol to
- be done in-kernel and it's HW offload when available.
-endef
-
-$(eval $(call KernelPackage,tls))
-
 
 define KernelPackage/tcp-hybla
   SUBMENU:=$(NETWORK_SUPPORT_MENU)
@@ -1205,8 +1186,7 @@ define KernelPackage/sctp
      CONFIG_SCTP_DEFAULT_COOKIE_HMAC_MD5=y
   FILES:= $(LINUX_DIR)/net/sctp/sctp.ko
   AUTOLOAD:= $(call AutoLoad,32,sctp)
-  DEPENDS:=+kmod-lib-crc32c +kmod-crypto-md5 +kmod-crypto-hmac \
-    +kmod-udptunnel4 +kmod-udptunnel6
+  DEPENDS:=+kmod-lib-crc32c +kmod-crypto-md5 +kmod-crypto-hmac
 endef
 
 define KernelPackage/sctp/description
@@ -1456,65 +1436,3 @@ define KernelPackage/netconsole/description
 endef
 
 $(eval $(call KernelPackage,netconsole))
-
-
-define KernelPackage/qrtr
-  SUBMENU:=$(NETWORK_SUPPORT_MENU)
-  TITLE:=Qualcomm IPC Router support
-  HIDDEN:=1
-  KCONFIG:=CONFIG_QRTR
-  FILES:= \
-  $(LINUX_DIR)/net/qrtr/qrtr.ko
-  AUTOLOAD:=$(call AutoProbe,qrtr)
-endef
-
-define KernelPackage/qrtr/description
- Qualcomm IPC Router support
-endef
-
-$(eval $(call KernelPackage,qrtr))
-
-define KernelPackage/qrtr-tun
-  SUBMENU:=$(NETWORK_SUPPORT_MENU)
-  TITLE:=TUN device for Qualcomm IPC Router
-  DEPENDS:=+kmod-qrtr
-  KCONFIG:=CONFIG_QRTR_TUN
-  FILES:= $(LINUX_DIR)/net/qrtr/qrtr-tun.ko
-  AUTOLOAD:=$(call AutoProbe,qrtr-tun)
-endef
-
-define KernelPackage/qrtr-tun/description
- TUN device for Qualcomm IPC Router
-endef
-
-$(eval $(call KernelPackage,qrtr-tun))
-
-define KernelPackage/qrtr-smd
-  SUBMENU:=$(NETWORK_SUPPORT_MENU)
-  TITLE:=SMD IPC Router channels
-  DEPENDS:=+kmod-qrtr @TARGET_ipq807x
-  KCONFIG:=CONFIG_QRTR_SMD
-  FILES:= $(LINUX_DIR)/net/qrtr/qrtr-smd.ko
-  AUTOLOAD:=$(call AutoProbe,qrtr-smd)
-endef
-
-define KernelPackage/qrtr-smd/description
- SMD IPC Router channels
-endef
-
-$(eval $(call KernelPackage,qrtr-smd))
-
-define KernelPackage/qrtr-mhi
-  SUBMENU:=$(NETWORK_SUPPORT_MENU)
-  TITLE:=MHI IPC Router channels
-  DEPENDS:=+kmod-mhi-bus +kmod-qrtr
-  KCONFIG:=CONFIG_QRTR_MHI
-  FILES:= $(LINUX_DIR)/net/qrtr/qrtr-mhi.ko
-  AUTOLOAD:=$(call AutoProbe,qrtr-mhi)
-endef
-
-define KernelPackage/qrtr-mhi/description
- MHI IPC Router channels
-endef
-
-$(eval $(call KernelPackage,qrtr-mhi))
