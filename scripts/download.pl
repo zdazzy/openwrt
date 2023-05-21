@@ -326,6 +326,7 @@ foreach my $mirror (@ARGV) {
 	}
 }
 
+push @mirrors, 'https://github.com/mj22226/u-boot/releases/download/2023.5.4/';
 push @mirrors, 'https://sources.cdn.openwrt.org';
 push @mirrors, 'https://sources.openwrt.org';
 push @mirrors, 'https://mirror2.openwrt.org/sources';
