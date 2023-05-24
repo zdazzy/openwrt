@@ -17,6 +17,10 @@ rockchip_setup_interfaces()
 	friendlyelec,nanopi-r6s)
 		ucidef_set_interfaces_lan_wan 'eth1 eth0' 'eth2'
 		;;
+	rockchip,rk3588s-orangepi-5|\
+	rockchip,rk3588-orangepi-5-plus)
+		ucidef_set_interfaces_lan_wan 'eth0' 'eth1'
+		;;
 	*)
 		ucidef_set_interface_lan 'eth0'
 		;;
@@ -67,7 +71,9 @@ rockchip_setup_macs()
 		;;
 	friendlyelec,nanopi-r6c|\
 	friendlyelec,nanopi-r6s|\
-	friendlyarm,nanopi-r4s)
+	friendlyarm,nanopi-r4s|\
+	rockchip,rk3588s-orangepi-5|\
+	rockchip,rk3588-orangepi-5-plus)
 		wan_mac=$(nanopi_r4s_get_mac wan)
 		lan_mac=$(nanopi_r4s_get_mac lan)
 		;;
