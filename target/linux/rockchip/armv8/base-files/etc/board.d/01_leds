@@ -16,6 +16,10 @@ friendlyarm,nanopi-r4s)
 	ucidef_set_led_netdev "wan" "WAN" "green:wan" "eth0"
 	ucidef_set_led_netdev "lan" "LAN" "green:lan" "eth1"
 	;;
+friendlyelec,nanopc-t6)
+	ucidef_set_led_netdev "lan" "LAN" "sys_led" "eth1"
+	ucidef_set_led_netdev "wan" "WAN" "usr_led" "eth0"
+	;;
 friendlyelec,nanopi-r6c)
 	ucidef_set_led_netdev "wan" "WAN" "wan_led" "eth0"
 	ucidef_set_led_netdev "lan" "LAN" "lan1_led" "eth1"
