@@ -1,0 +1,24 @@
+From a3a1e1761533133e2086ab24d619799d01e2c969 Mon Sep 17 00:00:00 2001
+From: Shreeya Patel <shreeya.patel@collabora.com>
+Date: Wed, 17 May 2023 04:30:51 +0530
+Subject: [PATCH 88/95] dt-bindings: iio: adc: Add rockchip,rk3588-saradc
+ string
+
+Add rockchip,rk3588-saradc compatible string.
+
+Signed-off-by: Shreeya Patel <shreeya.patel@collabora.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ Documentation/devicetree/bindings/iio/adc/rockchip-saradc.yaml | 1 +
+ 1 file changed, 1 insertion(+)
+
+--- a/Documentation/devicetree/bindings/iio/adc/rockchip-saradc.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/rockchip-saradc.yaml
+@@ -21,6 +21,7 @@ properties:
+               - rockchip,rk3308-saradc
+               - rockchip,rk3328-saradc
+               - rockchip,rk3568-saradc
++              - rockchip,rk3588-saradc
+               - rockchip,rv1108-saradc
+               - rockchip,rv1126-saradc
+           - const: rockchip,rk3399-saradc

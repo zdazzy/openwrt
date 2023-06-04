@@ -1,0 +1,46 @@
+From a761d5a5bfa7d952f81c645d23c694e4833f330c Mon Sep 17 00:00:00 2001
+From: Detlev Casanova <detlev.casanova@collabora.com>
+Date: Mon, 29 May 2023 10:04:16 -0400
+Subject: [PATCH 80/95] net: phy: realtek: Add optional external PHY clock
+
+In some cases, the PHY can use an external clock source instead of a
+crystal.
+
+Add an optional clock in the phy node to make sure that the clock source
+is enabled, if specified, before probing.
+
+Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
+---
+ drivers/net/phy/realtek.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+--- a/drivers/net/phy/realtek.c
++++ b/drivers/net/phy/realtek.c
+@@ -12,6 +12,7 @@
+ #include <linux/phy.h>
+ #include <linux/module.h>
+ #include <linux/delay.h>
++#include <linux/clk.h>
+ 
+ #define RTL821x_PHYSR				0x11
+ #define RTL821x_PHYSR_DUPLEX			BIT(13)
+@@ -89,6 +90,7 @@ struct rtl821x_priv {
+ 	u16 phycr1;
+ 	u16 phycr2;
+ 	bool has_phycr2;
++	struct clk *clk;
+ };
+ 
+ static int rtl821x_read_page(struct phy_device *phydev)
+@@ -112,6 +114,11 @@ static int rtl821x_probe(struct phy_devi
+ 	if (!priv)
+ 		return -ENOMEM;
+ 
++	priv->clk = devm_clk_get_optional_enabled(dev, "xtal");
++	if (IS_ERR(priv->clk))
++		return dev_err_probe(dev, PTR_ERR(priv->clk),
++				     "failed to get phy xtal clock\n");
++
+ 	ret = phy_read_paged(phydev, 0xa43, RTL8211F_PHYCR1);
+ 	if (ret < 0)
+ 		return ret;
