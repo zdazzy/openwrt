@@ -22,7 +22,7 @@ Signed-off-by: Marty Jones <mj8263788@gmail.com>
 +			clock-latency-ns = <40000>;
 +		};
  	};
-
+ 
  	cluster2_opp_table: opp-table-cluster2 {
 @@ -226,6 +232,12 @@
  					<925000 925000 1000000>;
@@ -35,5 +35,5 @@ Signed-off-by: Marty Jones <mj8263788@gmail.com>
 +			clock-latency-ns = <40000>;
 +		};
  	};
-
+ 
  	cpus {
