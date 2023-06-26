@@ -14,7 +14,7 @@ Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com
 
 --- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
 +++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-@@ -2728,6 +2728,18 @@
+@@ -2737,6 +2737,18 @@
  		status = "disabled";
  	};
  

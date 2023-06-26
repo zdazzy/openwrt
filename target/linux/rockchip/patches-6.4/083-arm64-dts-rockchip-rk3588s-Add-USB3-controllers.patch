@@ -51,7 +51,7 @@ Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
  		reg = <0x0 0xfd5c0000 0x0 0x100>;
 --- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
 +++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-@@ -832,6 +832,38 @@
+@@ -841,6 +841,38 @@
  		};
  	};
  
@@ -90,7 +90,7 @@ Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
  	usb_host0_ehci: usb@fc800000 {
  		compatible = "rockchip,rk3588-ehci", "generic-ehci";
  		reg = <0x0 0xfc800000 0x0 0x40000>;
-@@ -876,6 +908,36 @@
+@@ -885,6 +917,36 @@
  		status = "disabled";
  	};
  

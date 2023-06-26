@@ -16,7 +16,7 @@ Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 
 --- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
 +++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-@@ -1904,7 +1904,24 @@
+@@ -1913,7 +1913,24 @@
  		mbi-alias = <0x0 0xfe610000>;
  		mbi-ranges = <424 56>;
  		msi-controller;

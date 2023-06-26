@@ -36,13 +36,13 @@ Signed-off-by: Marty Jones <mj8263788@gmail.com>
  		compatible = "gpio-leds";
 -		pinctrl-names = "default";
 -		pinctrl-0 = <&lan_led_pin>, <&power_led_pin>, <&wan_led_pin>, <&wlan_led_pin>;
- 
+-
 -		led-lan {
 -			color = <LED_COLOR_ID_GREEN>;
 -			function = LED_FUNCTION_LAN;
 -			gpios = <&gpio3 RK_PA3 GPIO_ACTIVE_HIGH>;
 -		};
--
+ 
 -		power_led: led-power {
 -			color = <LED_COLOR_ID_RED>;
 -			function = LED_FUNCTION_POWER;
@@ -52,18 +52,18 @@ Signed-off-by: Marty Jones <mj8263788@gmail.com>
 +			pinctrl-names = "default";
  			gpios = <&gpio3 RK_PA2 GPIO_ACTIVE_HIGH>;
 +			pinctrl-0 = <&sys_led_pin>;
-+		};
-+
-+		lan-led {
-+			label = "green:lan";
-+			gpios = <&gpio3 RK_PA3 GPIO_ACTIVE_HIGH>;
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&lan_led_pin>;
  		};
  
 -		led-wan {
 -			color = <LED_COLOR_ID_GREEN>;
 -			function = LED_FUNCTION_WAN;
++		lan-led {
++			label = "green:lan";
++			gpios = <&gpio3 RK_PA3 GPIO_ACTIVE_HIGH>;
++			pinctrl-names = "default";
++			pinctrl-0 = <&lan_led_pin>;
++		};
++
 +		wan-led {
 +			label = "green:wan";
  			gpios = <&gpio3 RK_PA4 GPIO_ACTIVE_HIGH>;
@@ -130,7 +130,7 @@ Signed-off-by: Marty Jones <mj8263788@gmail.com>
 -
 -	rockchip-key {
 -		reset_button_pin: reset-button-pin {
--			rockchip,pins = <4 RK_PA0 RK_FUNC_GPIO &pcfg_pull_up>;
+-			rockchip,pins = <0 RK_PB7 RK_FUNC_GPIO &pcfg_pull_up>;
 -		};
 -	};
  };
@@ -201,7 +201,7 @@ Signed-off-by: Marty Jones <mj8263788@gmail.com>
  		};
  	};
  };
-@@ -117,21 +117,22 @@
+@@ -117,20 +117,21 @@
  	};
  
  	gpio-leds {
@@ -231,4 +231,3 @@ Signed-off-by: Marty Jones <mj8263788@gmail.com>
 +		};
  	};
  };
- 
