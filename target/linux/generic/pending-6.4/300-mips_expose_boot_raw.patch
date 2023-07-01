@@ -9,7 +9,7 @@ Acked-by: Rob Landley <rob@landley.net>
 ---
 --- a/arch/mips/Kconfig
 +++ b/arch/mips/Kconfig
-@@ -1008,9 +1008,6 @@ config FW_ARC
+@@ -1009,9 +1009,6 @@ config FW_ARC
  config ARCH_MAY_HAVE_PC_FDC
  	bool
  
@@ -19,7 +19,7 @@ Acked-by: Rob Landley <rob@landley.net>
  config CEVT_BCM1480
  	bool
  
-@@ -3011,6 +3008,18 @@ choice
+@@ -3012,6 +3009,18 @@ choice
  		bool "Extend builtin kernel arguments with bootloader arguments"
  endchoice
  
