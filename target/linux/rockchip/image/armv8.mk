@@ -41,7 +41,7 @@ define Device/xunlong_orangepi-5
   DEVICE_VENDOR := XunLong
   DEVICE_MODEL := OrangePi 5
   SOC := rk3588s
-  UBOOT_DEVICE_NAME := nanopi-r6c-rk3588
+  UBOOT_DEVICE_NAME := orangepi-5-rk3588
   IMAGE/sysupgrade.img.gz := boot-common | boot-script nanopi-r6c | pine64-img | gzip | append-metadata
  DEVICE_PACKAGES := \
 	blkid block-mount blockd btrfs-progs f2fs-tools f2fsck fdisk fixparts fstools gdisk \
@@ -57,7 +57,7 @@ define Device/xunlong_orangepi-5-plus
   DEVICE_VENDOR := XunLong
   DEVICE_MODEL := OrangePi 5 Plus
   SOC := rk3588
-  UBOOT_DEVICE_NAME := nanopi-r6c-rk3588
+  UBOOT_DEVICE_NAME := orangepi-5-plus-rk3588
   IMAGE/sysupgrade.img.gz := boot-common | boot-script nanopi-r6c | pine64-img | gzip | append-metadata
  DEVICE_PACKAGES := \
 	blkid block-mount blockd btrfs-progs f2fs-tools f2fsck fdisk fixparts fstools gdisk \
