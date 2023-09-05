@@ -203,7 +203,7 @@ $(eval $(call KernelPackage,dax))
 define KernelPackage/dm
   SUBMENU:=$(BLOCK_MENU)
   TITLE:=Device Mapper
-  DEPENDS:=+kmod-crypto-manager +kmod-dax +KERNEL_KEYS:kmod-keys-encrypted
+  DEPENDS:=+kmod-crypto-manager +KERNEL_KEYS:kmod-keys-encrypted
   # All the "=n" are unnecessary, they're only there
   # to stop the config from asking the question.
   # MIRROR is M because I've needed it for pvmove.
@@ -450,7 +450,7 @@ define KernelPackage/loop
 	CONFIG_BLK_DEV_LOOP \
 	CONFIG_BLK_DEV_CRYPTOLOOP=n
   FILES:=$(LINUX_DIR)/drivers/block/loop.ko
-  AUTOLOAD:=$(call AutoLoad,30,loop,1)
+  AUTOLOAD:=$(call AutoLoad,30,loop)
 endef
 
 define KernelPackage/loop/description
@@ -521,13 +521,11 @@ define KernelPackage/scsi-core
   TITLE:=SCSI device support
   KCONFIG:= \
 	CONFIG_SCSI \
-	CONFIG_SCSI_COMMON \
 	CONFIG_BLK_DEV_SD
   FILES:= \
 	$(LINUX_DIR)/drivers/scsi/scsi_mod.ko \
-	$(LINUX_DIR)/drivers/scsi/scsi_common.ko \
 	$(LINUX_DIR)/drivers/scsi/sd_mod.ko
-  AUTOLOAD:=$(call AutoLoad,40,scsi_mod scsi_common sd_mod,1)
+  AUTOLOAD:=$(call AutoLoad,40,scsi_mod sd_mod,1)
 endef
 
 $(eval $(call KernelPackage,scsi-core))

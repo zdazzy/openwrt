@@ -8,13 +8,27 @@ boardname="${board##*,}"
 board_config_update
 
 case $board in
-friendlyarm,nanopi-r2c|\
-friendlyarm,nanopi-r2s|\
-friendlyarm,nanopi-r4s|\
-xunlong,orangepi-r1-plus|\
-xunlong,orangepi-r1-plus-lts)
+friendlyarm,nanopi-r2s)
+	ucidef_set_led_netdev "wan" "WAN" "$boardname:green:wan" "eth0"
+	ucidef_set_led_netdev "lan" "LAN" "$boardname:green:lan" "eth1"
+	;;
+friendlyarm,nanopi-r4s)
 	ucidef_set_led_netdev "wan" "WAN" "green:wan" "eth0"
 	ucidef_set_led_netdev "lan" "LAN" "green:lan" "eth1"
+	;;
+friendlyelec,nanopc-t6)
+	ucidef_set_led_netdev "lan" "LAN" "sys_led" "eth1"
+	ucidef_set_led_netdev "wan" "WAN" "usr_led" "eth0"
+	;;
+friendlyelec,nanopi-r6c)
+	ucidef_set_led_netdev "wan" "WAN" "wan_led" "eth0"
+	ucidef_set_led_netdev "lan" "LAN" "lan1_led" "eth1"
+	ucidef_set_led_netdev "led1" "LED1" "lan2_led" "eth2"
+	;;
+friendlyelec,nanopi-r6s)
+	ucidef_set_led_netdev "wan" "WAN" "wan_led" "eth2"
+	ucidef_set_led_netdev "lan" "LAN" "lan1_led" "eth0"
+	ucidef_set_led_netdev "lan2" "LAN2" "lan2_led" "eth1"
 	;;
 esac
 
