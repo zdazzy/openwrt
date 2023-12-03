@@ -285,7 +285,7 @@ Signed-off-by: Phil Elwell <phil@raspberrypi.com>
  static inline int mmc_blk_part_switch(struct mmc_card *card,
  				      unsigned int part_type);
  static void mmc_blk_rw_rq_prep(struct mmc_queue_req *mqrq,
-@@ -2962,6 +2969,8 @@ static int mmc_blk_probe(struct mmc_card
+@@ -2964,6 +2971,8 @@ static int mmc_blk_probe(struct mmc_card
  {
  	struct mmc_blk_data *md;
  	int ret = 0;
@@ -294,7 +294,7 @@ Signed-off-by: Phil Elwell <phil@raspberrypi.com>
  
  	/*
  	 * Check that the card supports the command class(es) we need.
-@@ -2969,7 +2978,16 @@ static int mmc_blk_probe(struct mmc_card
+@@ -2971,7 +2980,16 @@ static int mmc_blk_probe(struct mmc_card
  	if (!(card->csd.cmdclass & CCC_BLOCK_READ))
  		return -ENODEV;
  
@@ -312,7 +312,7 @@ Signed-off-by: Phil Elwell <phil@raspberrypi.com>
  
  	card->complete_wq = alloc_workqueue("mmc_complete",
  					WQ_MEM_RECLAIM | WQ_HIGHPRI, 0);
-@@ -2984,6 +3002,17 @@ static int mmc_blk_probe(struct mmc_card
+@@ -2986,6 +3004,17 @@ static int mmc_blk_probe(struct mmc_card
  		goto out_free;
  	}
  
@@ -332,7 +332,7 @@ Signed-off-by: Phil Elwell <phil@raspberrypi.com>
  		goto out;
 --- a/drivers/mmc/core/core.c
 +++ b/drivers/mmc/core/core.c
-@@ -1813,7 +1813,8 @@ EXPORT_SYMBOL(mmc_erase);
+@@ -1818,7 +1818,8 @@ EXPORT_SYMBOL(mmc_erase);
  
  int mmc_can_erase(struct mmc_card *card)
  {
