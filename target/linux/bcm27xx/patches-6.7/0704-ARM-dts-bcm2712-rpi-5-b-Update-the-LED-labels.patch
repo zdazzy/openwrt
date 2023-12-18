@@ -1,0 +1,48 @@
+From d1cfd4428be84c767573ff49f827a47b2f86dcda Mon Sep 17 00:00:00 2001
+From: Phil Elwell <phil@raspberrypi.com>
+Date: Wed, 13 Dec 2023 11:26:22 +0000
+Subject: [PATCH] ARM: dts: bcm2712-rpi-5-b: Update the LED labels
+
+In 6.7 the labels on the LEDs have changed from xxx_led to led_xxx.
+Update the Pi 5 DTS to match, otherwise the act-led overlay does not
+apply.
+
+Signed-off-by: Phil Elwell <phil@raspberrypi.com>
+---
+ arch/arm/boot/dts/broadcom/bcm2712-rpi-5-b.dts | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+
+--- a/arch/arm/boot/dts/broadcom/bcm2712-rpi-5-b.dts
++++ b/arch/arm/boot/dts/broadcom/bcm2712-rpi-5-b.dts
+@@ -63,14 +63,14 @@
+ 	leds: leds {
+ 		compatible = "gpio-leds";
+ 
+-		pwr_led: led-pwr {
++		led_pwr: led-pwr {
+ 			label = "PWR";
+ 			gpios = <&rp1_gpio 44 GPIO_ACTIVE_LOW>;
+ 			default-state = "off";
+ 			linux,default-trigger = "none";
+ 		};
+ 
+-		act_led: led-act {
++		led_act: led-act {
+ 			label = "ACT";
+ 			gpios = <&gio_aon 9 GPIO_ACTIVE_LOW>;
+ 			default-state = "off";
+@@ -825,10 +825,10 @@ spi10_cs_pins: &spi10_cs_gpio1 {};
+ 		uart0 = <&uart0>, "status";
+ 		wifiaddr = <&wifi>, "local-mac-address[";
+ 
+-		act_led_activelow = <&act_led>, "active-low?";
+-		act_led_trigger = <&act_led>, "linux,default-trigger";
+-		pwr_led_activelow = <&pwr_led>, "gpios:8";
+-		pwr_led_trigger = <&pwr_led>, "linux,default-trigger";
++		act_led_activelow = <&led_act>, "active-low?";
++		act_led_trigger = <&led_act>, "linux,default-trigger";
++		pwr_led_activelow = <&led_pwr>, "gpios:8";
++		pwr_led_trigger = <&led_pwr>, "linux,default-trigger";
+ 		drm_fb0_rp1_dsi0 = <&aliases>, "drm-fb0=",&dsi0;
+ 		drm_fb0_rp1_dsi1 = <&aliases>, "drm-fb0=",&dsi1;
+ 		drm_fb0_rp1_dpi = <&aliases>, "drm-fb0=",&dpi;

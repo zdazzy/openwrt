@@ -131,7 +131,7 @@ Signed-off-by: Lee Jackson <info@arducam.com>
 +...
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
-@@ -1564,6 +1564,14 @@ S:	Maintained
+@@ -1552,6 +1552,14 @@ S:	Maintained
  F:	drivers/net/arcnet/
  F:	include/uapi/linux/if_arcnet.h
  

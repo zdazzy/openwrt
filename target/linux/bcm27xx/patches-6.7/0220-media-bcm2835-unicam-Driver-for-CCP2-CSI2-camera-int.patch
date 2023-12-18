@@ -30,7 +30,7 @@ Reported-by: kbuild test robot <lkp@intel.com>
 
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
-@@ -3972,7 +3972,7 @@ M:	Dave Stevenson <dave.stevenson@raspbe
+@@ -3961,7 +3961,7 @@ M:	Dave Stevenson <dave.stevenson@raspbe
  L:	linux-media@vger.kernel.org
  S:	Maintained
  F:	drivers/media/platform/bcm2835/
