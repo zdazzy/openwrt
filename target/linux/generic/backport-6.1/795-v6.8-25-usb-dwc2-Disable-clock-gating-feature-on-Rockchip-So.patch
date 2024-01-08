@@ -1,0 +1,26 @@
+From ca2dc35e555e7043de585f4e46123d8fbd2b5a21 Mon Sep 17 00:00:00 2001
+From: William Wu <william.wu@rock-chips.com>
+Date: Tue, 26 Dec 2023 15:19:59 +0800
+Subject: [PATCH] usb: dwc2: Disable clock gating feature on Rockchip SoCs
+
+The DWC2 IP on the Rockchip SoCs doesn't support clock gating.
+When a clock gating is enabled, system hangs.
+
+Signed-off-by: William Wu <william.wu@rock-chips.com>
+Acked-by: Minas Harutyunyan <hminas@synopsys.com>
+Link: https://lore.kernel.org/r/1703575199-23638-1-git-send-email-william.wu@rock-chips.com
+Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+---
+ drivers/usb/dwc2/params.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+--- a/drivers/usb/dwc2/params.c
++++ b/drivers/usb/dwc2/params.c
+@@ -155,6 +155,7 @@ static void dwc2_set_amlogic_g12a_params
+ 	p->lpm_clock_gating = false;
+ 	p->besl = false;
+ 	p->hird_threshold_en = false;
++	p->no_clock_gating = true;
+ }
+ 
+ static void dwc2_set_amcc_params(struct dwc2_hsotg *hsotg)
