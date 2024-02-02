@@ -1,0 +1,21 @@
+From f0806176f32f3f281a9dd143c25d251a3a4c7c4e Mon Sep 17 00:00:00 2001
+From: Dom Cobley <popcornmix@gmail.com>
+Date: Fri, 2 Feb 2024 12:59:20 +0000
+Subject: [PATCH] fixup! staging: media: rpivid: Add Raspberry Pi V4L2 H265
+ decoder
+
+---
+ drivers/staging/media/rpivid/rpivid_video.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+--- a/drivers/staging/media/rpivid/rpivid_video.c
++++ b/drivers/staging/media/rpivid/rpivid_video.c
+@@ -685,7 +685,7 @@ int rpivid_queue_init(void *priv, struct
+ 	dst_vq->io_modes = VB2_MMAP | VB2_DMABUF;
+ 	dst_vq->drv_priv = ctx;
+ 	dst_vq->buf_struct_size = sizeof(struct rpivid_buffer);
+-	dst_vq->min_buffers_needed = 1;
++	dst_vq->min_queued_buffers = 1;
+ 	dst_vq->ops = &rpivid_qops;
+ 	dst_vq->mem_ops = &vb2_dma_contig_memops;
+ 	dst_vq->timestamp_flags = V4L2_BUF_FLAG_TIMESTAMP_COPY;

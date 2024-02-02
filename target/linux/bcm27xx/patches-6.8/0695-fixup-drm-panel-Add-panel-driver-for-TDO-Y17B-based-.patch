@@ -1,0 +1,19 @@
+From 3fdec17bacf4076b08c77b9f2a149c0cb227ec24 Mon Sep 17 00:00:00 2001
+From: Dom Cobley <popcornmix@gmail.com>
+Date: Fri, 2 Feb 2024 12:42:41 +0000
+Subject: [PATCH] fixup! drm/panel: Add panel driver for TDO Y17B based panels
+
+---
+ drivers/gpu/drm/panel/panel-tdo-y17p.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+--- a/drivers/gpu/drm/panel/panel-tdo-y17p.c
++++ b/drivers/gpu/drm/panel/panel-tdo-y17p.c
+@@ -16,6 +16,7 @@
+ #include <linux/gpio/consumer.h>
+ #include <linux/media-bus-format.h>
+ #include <linux/module.h>
++#include <linux/of.h>
+ #include <linux/of_device.h>
+ #include <linux/regmap.h>
+ #include <linux/regulator/consumer.h>

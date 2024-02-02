@@ -1,0 +1,19 @@
+From c9640be7648edbcec68c2acd9b60840b21e971c1 Mon Sep 17 00:00:00 2001
+From: Dom Cobley <popcornmix@gmail.com>
+Date: Fri, 2 Feb 2024 12:41:35 +0000
+Subject: [PATCH] fixup! drm/panel: Add panel driver for Ilitek ILI9806E panel
+
+---
+ drivers/gpu/drm/panel/panel-ilitek-ili9806e.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+--- a/drivers/gpu/drm/panel/panel-ilitek-ili9806e.c
++++ b/drivers/gpu/drm/panel/panel-ilitek-ili9806e.c
+@@ -15,6 +15,7 @@
+ #include <linux/gpio/consumer.h>
+ #include <linux/media-bus-format.h>
+ #include <linux/module.h>
++#include <linux/of.h>
+ #include <linux/of_device.h>
+ #include <linux/regmap.h>
+ #include <linux/regulator/consumer.h>

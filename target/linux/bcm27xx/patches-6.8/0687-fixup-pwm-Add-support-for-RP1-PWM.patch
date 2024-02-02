@@ -1,0 +1,19 @@
+From d387c713efa041ead0c4b365d67c27256b301af1 Mon Sep 17 00:00:00 2001
+From: Dom Cobley <popcornmix@gmail.com>
+Date: Wed, 31 Jan 2024 19:53:58 +0000
+Subject: [PATCH] fixup! pwm: Add support for RP1 PWM
+
+---
+ drivers/pwm/pwm-rp1.c | 1 -
+ 1 file changed, 1 deletion(-)
+
+--- a/drivers/pwm/pwm-rp1.c
++++ b/drivers/pwm/pwm-rp1.c
+@@ -152,7 +152,6 @@ static int rp1_pwm_probe(struct platform
+ 
+ 	pc->chip.dev = &pdev->dev;
+ 	pc->chip.ops = &rp1_pwm_ops;
+-	pc->chip.base = -1;
+ 	pc->chip.npwm = 4;
+ 	pc->chip.of_xlate = of_pwm_xlate_with_flags;
+ 	pc->chip.of_pwm_n_cells = 3;

@@ -1,0 +1,30 @@
+From c956756ff7d6df8fcb76c7e15f5fed6c4203a062 Mon Sep 17 00:00:00 2001
+From: Dom Cobley <popcornmix@gmail.com>
+Date: Fri, 2 Feb 2024 12:48:29 +0000
+Subject: [PATCH] fixup! media: i2c: Add driver of Arducam Pivariety series
+ camera
+
+---
+ drivers/media/i2c/arducam-pivariety.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+--- a/drivers/media/i2c/arducam-pivariety.c
++++ b/drivers/media/i2c/arducam-pivariety.c
+@@ -394,7 +394,7 @@ static int pivariety_open(struct v4l2_su
+ {
+ 	struct pivariety *pivariety = to_pivariety(sd);
+ 	struct v4l2_mbus_framefmt *try_fmt =
+-		v4l2_subdev_get_try_format(sd, fh->state, 0);
++		v4l2_subdev_state_get_format(fh->state, 0);
+ 	struct arducam_format *def_fmt = &pivariety->supported_formats[0];
+ 
+ 	/* Initialize try_fmt */
+@@ -771,7 +771,7 @@ __pivariety_get_pad_crop(struct pivariet
+ 
+ 	switch (which) {
+ 	case V4L2_SUBDEV_FORMAT_TRY:
+-		return v4l2_subdev_get_try_crop(&pivariety->sd, sd_state, pad);
++		return v4l2_subdev_state_get_crop(sd_state, pad);
+ 	case V4L2_SUBDEV_FORMAT_ACTIVE:
+ 		ret = pivariety_read_sel(pivariety, &pivariety->crop);
+ 		if (ret)

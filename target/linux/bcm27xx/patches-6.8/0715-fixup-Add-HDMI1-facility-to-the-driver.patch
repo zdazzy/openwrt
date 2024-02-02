@@ -1,0 +1,19 @@
+From 8946886dfcb91346bd020a14140611ccb84087ad Mon Sep 17 00:00:00 2001
+From: Dom Cobley <popcornmix@gmail.com>
+Date: Fri, 2 Feb 2024 12:59:37 +0000
+Subject: [PATCH] fixup! Add HDMI1 facility to the driver.
+
+---
+ drivers/staging/vc04_services/bcm2835-audio/bcm2835.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+--- a/drivers/staging/vc04_services/bcm2835-audio/bcm2835.c
++++ b/drivers/staging/vc04_services/bcm2835-audio/bcm2835.c
+@@ -7,6 +7,7 @@
+ #include <linux/init.h>
+ #include <linux/slab.h>
+ #include <linux/module.h>
++#include <linux/of.h>
+ 
+ #include "bcm2835.h"
+ #include <soc/bcm2835/raspberrypi-firmware.h>

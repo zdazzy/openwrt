@@ -1,0 +1,47 @@
+From 727a2b55cf0f182ec21d32fb0d2f6137485dc237 Mon Sep 17 00:00:00 2001
+From: Dom Cobley <popcornmix@gmail.com>
+Date: Fri, 2 Feb 2024 12:45:59 +0000
+Subject: [PATCH] fixup! drm/vc4: fkms: Add firmware-kms mode
+
+---
+ drivers/gpu/drm/vc4/vc4_firmware_kms.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+--- a/drivers/gpu/drm/vc4/vc4_firmware_kms.c
++++ b/drivers/gpu/drm/vc4/vc4_firmware_kms.c
+@@ -1558,7 +1558,7 @@ static void vc4_fkms_connector_destroy(s
+  *
+  * Returns: The newly allocated connector state, or NULL on failure.
+  */
+-struct drm_connector_state *
++static struct drm_connector_state *
+ vc4_connector_duplicate_state(struct drm_connector *connector)
+ {
+ 	struct vc4_fkms_connector_state *state;
+@@ -1580,7 +1580,7 @@ vc4_connector_duplicate_state(struct drm
+  *
+  * Returns the atomic property value for a digital connector.
+  */
+-int vc4_connector_atomic_get_property(struct drm_connector *connector,
++static int vc4_connector_atomic_get_property(struct drm_connector *connector,
+ 				      const struct drm_connector_state *state,
+ 				      struct drm_property *property,
+ 				      uint64_t *val)
+@@ -1610,7 +1610,7 @@ int vc4_connector_atomic_get_property(st
+  *
+  * Sets the atomic property value for a digital connector.
+  */
+-int vc4_connector_atomic_set_property(struct drm_connector *connector,
++static int vc4_connector_atomic_set_property(struct drm_connector *connector,
+ 				      struct drm_connector_state *state,
+ 				      struct drm_property *property,
+ 				      uint64_t val)
+@@ -1630,7 +1630,7 @@ int vc4_connector_atomic_set_property(st
+ 	return -EINVAL;
+ }
+ 
+-int vc4_connector_atomic_check(struct drm_connector *connector,
++static int vc4_connector_atomic_check(struct drm_connector *connector,
+ 			       struct drm_atomic_state *state)
+ {
+ 	struct drm_connector_state *old_state =
