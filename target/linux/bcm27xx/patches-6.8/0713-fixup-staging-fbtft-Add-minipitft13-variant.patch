@@ -1,0 +1,20 @@
+From d9dfad8f97a1144d3eb3a51b674bafbecfb0236e Mon Sep 17 00:00:00 2001
+From: Dom Cobley <popcornmix@gmail.com>
+Date: Fri, 2 Feb 2024 12:58:56 +0000
+Subject: [PATCH] fixup! staging: fbtft: Add minipitft13 variant
+
+---
+ drivers/staging/fbtft/fb_st7789v.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+--- a/drivers/staging/fbtft/fb_st7789v.c
++++ b/drivers/staging/fbtft/fb_st7789v.c
+@@ -415,7 +415,7 @@ static struct fbtft_display display = {
+ 	},
+ };
+ 
+-int variant_minipitft13(struct fbtft_display *display)
++static int variant_minipitft13(struct fbtft_display *display)
+ {
+ 	display->fbtftops.set_addr_win = minipitft13_set_addr_win;
+ 	return 0;

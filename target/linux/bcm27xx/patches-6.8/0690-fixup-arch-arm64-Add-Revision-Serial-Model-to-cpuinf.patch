@@ -1,0 +1,19 @@
+From e91799d05aa8caff64d30dc01e19a333aa334fdf Mon Sep 17 00:00:00 2001
+From: Dom Cobley <popcornmix@gmail.com>
+Date: Fri, 2 Feb 2024 12:40:18 +0000
+Subject: [PATCH] fixup! arch/arm64: Add Revision, Serial, Model to cpuinfo
+
+---
+ arch/arm64/kernel/cpuinfo.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+--- a/arch/arm64/kernel/cpuinfo.c
++++ b/arch/arm64/kernel/cpuinfo.c
+@@ -17,6 +17,7 @@
+ #include <linux/elf.h>
+ #include <linux/init.h>
+ #include <linux/kernel.h>
++#include <linux/of.h>
+ #include <linux/of_platform.h>
+ #include <linux/personality.h>
+ #include <linux/preempt.h>

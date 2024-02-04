@@ -1,0 +1,56 @@
+From f217716399618f0fc93fc4f1d811d41c52e967bb Mon Sep 17 00:00:00 2001
+From: Dom Cobley <popcornmix@gmail.com>
+Date: Fri, 2 Feb 2024 12:56:34 +0000
+Subject: [PATCH] media: rp1: cfe: Squash fixes
+
+---
+ drivers/media/platform/raspberrypi/rp1_cfe/cfe.c | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+--- a/drivers/media/platform/raspberrypi/rp1_cfe/cfe.c
++++ b/drivers/media/platform/raspberrypi/rp1_cfe/cfe.c
+@@ -844,7 +844,7 @@ static void cfe_start_channel(struct cfe
+ 			__func__, node_desc[FE_OUT0].name,
+ 			cfe->fe_csi2_channel);
+ 
+-		source_fmt = v4l2_subdev_get_pad_format(&cfe->csi2.sd, state,
++		source_fmt = v4l2_subdev_state_get_format(state,
+ 							cfe->fe_csi2_channel);
+ 		fmt = find_format_by_code(source_fmt->code);
+ 
+@@ -873,7 +873,7 @@ static void cfe_start_channel(struct cfe
+ 
+ 		u32 mode = CSI2_MODE_NORMAL;
+ 
+-		source_fmt = v4l2_subdev_get_pad_format(&cfe->csi2.sd, state,
++		source_fmt = v4l2_subdev_state_get_format(state,
+ 			node_desc[node->id].link_pad - CSI2_NUM_CHANNELS);
+ 		fmt = find_format_by_code(source_fmt->code);
+ 
+@@ -1058,7 +1058,7 @@ static u64 sensor_link_rate(struct cfe_d
+ 	s64 link_freq;
+ 
+ 	state = v4l2_subdev_lock_and_get_active_state(&cfe->csi2.sd);
+-	source_fmt = v4l2_subdev_get_pad_format(&cfe->csi2.sd, state, 0);
++	source_fmt = v4l2_subdev_state_get_format(state, 0);
+ 	fmt = find_format_by_code(source_fmt->code);
+ 	v4l2_subdev_unlock_state(state);
+ 
+@@ -1686,7 +1686,7 @@ static int cfe_video_link_validate(struc
+ 
+ 	state = v4l2_subdev_lock_and_get_active_state(source_sd);
+ 
+-	source_fmt = v4l2_subdev_get_pad_format(source_sd, state,
++	source_fmt = v4l2_subdev_state_get_format(state,
+ 						link->source->index);
+ 	if (!source_fmt) {
+ 		ret = -EINVAL;
+@@ -1905,7 +1905,7 @@ static int cfe_register_node(struct cfe_
+ 					     : sizeof(struct cfe_buffer);
+ 	q->timestamp_flags = V4L2_BUF_FLAG_TIMESTAMP_MONOTONIC;
+ 	q->lock = &node->lock;
+-	q->min_buffers_needed = 1;
++	q->min_queued_buffers = 1;
+ 	q->dev = &cfe->pdev->dev;
+ 
+ 	ret = vb2_queue_init(q);

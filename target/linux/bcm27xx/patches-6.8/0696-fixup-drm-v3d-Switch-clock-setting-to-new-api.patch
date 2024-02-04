@@ -1,0 +1,19 @@
+From 54a07684d93125d8076fc0e9643923fbf70af6df Mon Sep 17 00:00:00 2001
+From: Dom Cobley <popcornmix@gmail.com>
+Date: Fri, 2 Feb 2024 12:45:12 +0000
+Subject: [PATCH] fixup! drm/v3d: Switch clock setting to new api
+
+---
+ drivers/gpu/drm/v3d/v3d_drv.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+--- a/drivers/gpu/drm/v3d/v3d_drv.c
++++ b/drivers/gpu/drm/v3d/v3d_drv.c
+@@ -17,6 +17,7 @@
+ #include <linux/dma-mapping.h>
+ #include <linux/io.h>
+ #include <linux/module.h>
++#include <linux/of.h>
+ #include <linux/of_platform.h>
+ #include <linux/platform_device.h>
+ #include <linux/sched/clock.h>

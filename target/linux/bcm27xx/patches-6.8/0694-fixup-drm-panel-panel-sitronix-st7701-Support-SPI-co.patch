@@ -1,0 +1,23 @@
+From 72fb5658bcf1429c4bb827d14b00363738c72927 Mon Sep 17 00:00:00 2001
+From: Dom Cobley <popcornmix@gmail.com>
+Date: Fri, 2 Feb 2024 12:42:24 +0000
+Subject: [PATCH] fixup! drm/panel/panel-sitronix-st7701: Support SPI config
+ and RGB data
+
+---
+ drivers/gpu/drm/panel/panel-sitronix-st7701.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+--- a/drivers/gpu/drm/panel/panel-sitronix-st7701.c
++++ b/drivers/gpu/drm/panel/panel-sitronix-st7701.c
+@@ -1312,7 +1312,9 @@ static void st7701_dsi_remove(struct mip
+ 
+ static const struct of_device_id st7701_of_match[] = {
+ 	{ .compatible = "anbernic,rg-arc-panel", .data = &rg_arc_desc },
+-}
++	{ }
++};
++MODULE_DEVICE_TABLE(of, st7701_of_match);
+ 
+ static const struct of_device_id st7701_dsi_of_match[] = {
+ 	{ .compatible = "densitron,dmt028vghmcmi-1a", .data = &dmt028vghmcmi_1a_desc },

@@ -1,0 +1,19 @@
+From b505d09bee32b8a863c5e756172972e3d49335c7 Mon Sep 17 00:00:00 2001
+From: Dom Cobley <popcornmix@gmail.com>
+Date: Fri, 2 Feb 2024 12:45:40 +0000
+Subject: [PATCH] fixup! drm/vc4: fkms: Add firmware-kms mode
+
+---
+ drivers/gpu/drm/vc4/vc4_firmware_kms.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+--- a/drivers/gpu/drm/vc4/vc4_firmware_kms.c
++++ b/drivers/gpu/drm/vc4/vc4_firmware_kms.c
+@@ -32,6 +32,7 @@
+ #include <linux/clk.h>
+ #include <linux/debugfs.h>
+ #include <linux/module.h>
++#include <linux/platform_device.h>
+ 
+ #include <soc/bcm2835/raspberrypi-firmware.h>
+ 

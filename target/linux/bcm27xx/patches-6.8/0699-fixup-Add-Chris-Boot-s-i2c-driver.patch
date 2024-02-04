@@ -1,0 +1,39 @@
+From d54586c49877a8dc52ee1a364e9b582426ef45e5 Mon Sep 17 00:00:00 2001
+From: Dom Cobley <popcornmix@gmail.com>
+Date: Fri, 2 Feb 2024 12:47:55 +0000
+Subject: [PATCH] fixup! Add Chris Boot's i2c driver
+
+---
+ drivers/i2c/busses/i2c-bcm2708.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+--- a/drivers/i2c/busses/i2c-bcm2708.c
++++ b/drivers/i2c/busses/i2c-bcm2708.c
+@@ -373,12 +373,12 @@ static int bcm2708_i2c_probe(struct plat
+ 	platform_set_drvdata(pdev, bi);
+ 
+ 	adap = &bi->adapter;
+-	adap->class = I2C_CLASS_HWMON | I2C_CLASS_DDC;
++	adap->class = I2C_CLASS_HWMON;
+ 	adap->algo = &bcm2708_i2c_algorithm;
+ 	adap->algo_data = bi;
+ 	adap->dev.parent = &pdev->dev;
+ 	adap->nr = pdev->id;
+-	strlcpy(adap->name, dev_name(&pdev->dev), sizeof(adap->name));
++	strscpy(adap->name, dev_name(&pdev->dev), sizeof(adap->name));
+ 	adap->dev.of_node = pdev->dev.of_node;
+ 
+ 	switch (pdev->id) {
+@@ -386,10 +386,10 @@ static int bcm2708_i2c_probe(struct plat
+ 		adap->class = I2C_CLASS_HWMON;
+ 		break;
+ 	case 1:
+-		adap->class = I2C_CLASS_DDC;
++		adap->class = I2C_CLASS_HWMON;
+ 		break;
+ 	case 2:
+-		adap->class = I2C_CLASS_DDC;
++		adap->class = I2C_CLASS_HWMON;
+ 		break;
+ 	default:
+ 		dev_err(&pdev->dev, "can only bind to BSC 0, 1 or 2\n");

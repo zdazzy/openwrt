@@ -1,0 +1,29 @@
+From 9db63b26467999562d71d204e92355b577c2473e Mon Sep 17 00:00:00 2001
+From: Dom Cobley <popcornmix@gmail.com>
+Date: Fri, 2 Feb 2024 12:55:38 +0000
+Subject: [PATCH] fixup! media/bcm2835-unicam: Add support for configuration
+ via MC API
+
+---
+ drivers/media/platform/bcm2835/bcm2835-unicam.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+--- a/drivers/media/platform/bcm2835/bcm2835-unicam.c
++++ b/drivers/media/platform/bcm2835/bcm2835-unicam.c
+@@ -3086,12 +3086,12 @@ static int register_node(struct unicam_d
+ 			v4l2_disable_ioctl(&node->video_dev,
+ 					   VIDIOC_ENUM_FRAMEINTERVALS);
+ 		if (pad_id == METADATA_PAD ||
+-		    !v4l2_subdev_has_op(unicam->sensor, video,
+-					g_frame_interval))
++		    !v4l2_subdev_has_op(unicam->sensor, pad,
++					get_frame_interval))
+ 			v4l2_disable_ioctl(&node->video_dev, VIDIOC_G_PARM);
+ 		if (pad_id == METADATA_PAD ||
+-		    !v4l2_subdev_has_op(unicam->sensor, video,
+-					s_frame_interval))
++		    !v4l2_subdev_has_op(unicam->sensor, pad,
++					set_frame_interval))
+ 			v4l2_disable_ioctl(&node->video_dev, VIDIOC_S_PARM);
+ 
+ 		if (pad_id == METADATA_PAD ||

@@ -1,0 +1,29 @@
+From eff8e79334253fb927d651e9415c3a0648a18c26 Mon Sep 17 00:00:00 2001
+From: Dom Cobley <popcornmix@gmail.com>
+Date: Fri, 2 Feb 2024 13:01:11 +0000
+Subject: [PATCH] fixup! staging: vc04_services: Add new vc-sm-cma driver
+
+---
+ drivers/staging/vc04_services/vc-sm-cma/vc_sm.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+--- a/drivers/staging/vc04_services/vc-sm-cma/vc_sm.c
++++ b/drivers/staging/vc04_services/vc-sm-cma/vc_sm.c
+@@ -701,7 +701,7 @@ static const struct dma_buf_ops dma_buf_
+ };
+ 
+ /* Import a dma_buf to be shared with VC. */
+-int
++static int
+ vc_sm_cma_import_dmabuf_internal(struct vc_sm_privdata_t *private,
+ 				 struct dma_buf *dma_buf,
+ 				 int fd,
+@@ -1090,7 +1090,7 @@ out:
+  * Allocate a shared memory handle and block.
+  * Allocation is from CMA, and then imported into the VPU mappings.
+  */
+-int vc_sm_cma_ioctl_alloc(struct vc_sm_privdata_t *private,
++static int vc_sm_cma_ioctl_alloc(struct vc_sm_privdata_t *private,
+ 			  struct vc_sm_cma_ioctl_alloc *ioparam)
+ {
+ 	DEFINE_DMA_BUF_EXPORT_INFO(exp_info);
