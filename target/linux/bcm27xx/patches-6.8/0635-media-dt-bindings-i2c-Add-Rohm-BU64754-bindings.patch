@@ -67,7 +67,7 @@ Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
 +...
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
-@@ -19003,6 +19003,13 @@ S:	Supported
+@@ -19002,6 +19002,13 @@ S:	Supported
  F:	drivers/iio/light/rohm-bu27008.c
  F:	drivers/iio/light/rohm-bu27034.c
  
