@@ -508,6 +508,7 @@ define KernelPackage/video-videobuf2
 	$(LINUX_DIR)/drivers/media/common/videobuf2/videobuf2-common.ko \
 	$(LINUX_DIR)/drivers/media/common/videobuf2/videobuf2-v4l2.ko \
 	$(LINUX_DIR)/drivers/media/common/videobuf2/videobuf2-memops.ko \
+	$(LINUX_DIR)/drivers/media/common/uvc.ko \
 	$(LINUX_DIR)/drivers/media/common/videobuf2/videobuf2-vmalloc.ko
   AUTOLOAD:=$(call AutoLoad,65,videobuf2-core videobuf-v4l2 videobuf2-memops videobuf2-vmalloc)
   $(call AddDepends/video)
