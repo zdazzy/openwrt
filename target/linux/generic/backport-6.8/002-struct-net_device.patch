@@ -93,7 +93,7 @@
  	error = device_add(dev);
 --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
 +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-@@ -7655,10 +7655,6 @@ int stmmac_dvr_probe(struct device *devi
+@@ -7635,10 +7635,6 @@ int stmmac_dvr_probe(struct device *devi
  	if (priv->dma_cap.rssen && priv->plat->rss_en)
  		ndev->features |= NETIF_F_RXHASH;
  
