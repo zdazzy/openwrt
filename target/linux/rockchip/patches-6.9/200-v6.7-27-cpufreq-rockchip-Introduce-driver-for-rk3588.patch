@@ -24,7 +24,7 @@ Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 
 --- a/drivers/cpufreq/Kconfig.arm
 +++ b/drivers/cpufreq/Kconfig.arm
-@@ -189,6 +189,16 @@ config ARM_RASPBERRYPI_CPUFREQ
+@@ -190,6 +190,16 @@ config ARM_RASPBERRYPI_CPUFREQ
  
  	  If in doubt, say N.
  
@@ -53,7 +53,7 @@ Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
  obj-$(CONFIG_ARM_SA1110_CPUFREQ)	+= sa1110-cpufreq.o
 --- a/drivers/cpufreq/cpufreq-dt-platdev.c
 +++ b/drivers/cpufreq/cpufreq-dt-platdev.c
-@@ -168,6 +168,8 @@ static const struct of_device_id blockli
+@@ -169,6 +169,8 @@ static const struct of_device_id blockli
  	{ .compatible = "qcom,sm8450", },
  	{ .compatible = "qcom,sm8550", },
  

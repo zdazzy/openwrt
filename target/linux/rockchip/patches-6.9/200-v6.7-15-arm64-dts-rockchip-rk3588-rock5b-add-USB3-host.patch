@@ -28,7 +28,7 @@ Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
  &cpu_b0 {
  	cpu-supply = <&vdd_cpu_big0_s0>;
  };
-@@ -778,6 +782,10 @@
+@@ -777,6 +781,10 @@
  	status = "okay";
  };
  

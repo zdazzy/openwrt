@@ -1,6 +1,6 @@
 --- a/include/linux/netdevice.h
 +++ b/include/linux/netdevice.h
-@@ -2305,12 +2305,8 @@ struct net_device {
+@@ -2319,12 +2319,8 @@ struct net_device {
  #if IS_ENABLED(CONFIG_AX25)
  	void			*ax25_ptr;
  #endif
@@ -47,7 +47,7 @@
  }
 --- a/net/core/net-sysfs.c
 +++ b/net/core/net-sysfs.c
-@@ -759,6 +759,7 @@ static const struct attribute_group nets
+@@ -764,6 +764,7 @@ static const struct attribute_group nets
  	.attrs  = netstat_attrs,
  };
  
@@ -55,7 +55,7 @@
  static struct attribute *wireless_attrs[] = {
  	NULL
  };
-@@ -767,19 +768,7 @@ static const struct attribute_group wire
+@@ -772,19 +773,7 @@ static const struct attribute_group wire
  	.name = "wireless",
  	.attrs = wireless_attrs,
  };
@@ -75,7 +75,7 @@
  
  #else /* CONFIG_SYSFS */
  #define net_class_groups	NULL
-@@ -2048,8 +2037,14 @@ int netdev_register_kobject(struct net_d
+@@ -2066,8 +2055,14 @@ int netdev_register_kobject(struct net_d
  
  	*groups++ = &netstat_group;
  
@@ -93,7 +93,7 @@
  	error = device_add(dev);
 --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
 +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-@@ -7677,10 +7677,6 @@ int stmmac_dvr_probe(struct device *devi
+@@ -7695,10 +7695,6 @@ int stmmac_dvr_probe(struct device *devi
  	if (priv->dma_cap.rssen && priv->plat->rss_en)
  		ndev->features |= NETIF_F_RXHASH;
  

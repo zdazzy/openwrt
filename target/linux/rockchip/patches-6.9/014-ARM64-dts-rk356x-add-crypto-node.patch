@@ -14,7 +14,7 @@ Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
 
 --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
 +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-@@ -1070,6 +1070,18 @@
+@@ -1071,6 +1071,18 @@
  		status = "disabled";
  	};
  

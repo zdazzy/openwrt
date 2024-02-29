@@ -536,8 +536,8 @@ Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
  	timer {
  		compatible = "arm,armv8-timer";
  		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_HIGH 0>,
-@@ -543,6 +985,16 @@
- 		reg = <0x0 0xfd5a8000 0x0 0x100>;
+@@ -544,6 +986,16 @@
+ 		clocks = <&cru PCLK_VO1GRF>;
  	};
  
 +	bigcore0_grf: syscon@fd590000 {

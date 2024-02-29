@@ -16,4 +16,4 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
 +#define HIGHMEM_START		_AC(0x10000000, UL)
  #endif
  
- #endif /* CONFIG_32BIT */
+ #define CKSEG0ADDR_OR_64BIT(x)	CKSEG0ADDR(x)

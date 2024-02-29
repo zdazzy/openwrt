@@ -16,7 +16,7 @@ Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
 
 --- a/drivers/net/phy/realtek.c
 +++ b/drivers/net/phy/realtek.c
-@@ -709,6 +709,25 @@ static int rtl822x_config_aneg(struct ph
+@@ -704,6 +704,25 @@ static int rtl822x_config_aneg(struct ph
  	return __genphy_config_aneg(phydev, ret);
  }
  
@@ -42,8 +42,8 @@ Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
  static int rtl822x_read_status(struct phy_device *phydev)
  {
  	int ret;
-@@ -730,11 +749,14 @@ static int rtl822x_read_status(struct ph
- 				 lpadv & MDIO_AN_10GBT_STAT_LP2_5G);
+@@ -718,11 +737,14 @@ static int rtl822x_read_status(struct ph
+ 						  lpadv);
  	}
  
 -	ret = genphy_read_status(phydev);
