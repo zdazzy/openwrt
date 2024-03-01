@@ -1,0 +1,19 @@
+From 667f0dde1e0526d82b54592a516f4095aa732d9d Mon Sep 17 00:00:00 2001
+From: Phil Elwell <8911409+pelwell@users.noreply.github.com>
+Date: Thu, 18 Jan 2024 12:01:58 +0000
+Subject: [PATCH] Adding Pi 5 as a device to bug_report.yml
+
+---
+ .github/ISSUE_TEMPLATE/bug_report.yml | 1 +
+ 1 file changed, 1 insertion(+)
+
+--- a/.github/ISSUE_TEMPLATE/bug_report.yml
++++ b/.github/ISSUE_TEMPLATE/bug_report.yml
+@@ -51,6 +51,7 @@ body:
+       - Raspberry Pi 3 Mod. B+
+       - Raspberry Pi 4 Mod. B
+       - Raspberry Pi 400
++      - Raspberry Pi 5
+       - Raspberry Pi CM1
+       - Raspberry Pi CM3
+       - Raspberry Pi CM3 Lite

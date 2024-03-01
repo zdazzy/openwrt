@@ -18,3 +18,8 @@ dtoverlay=disable-bt
 # dtparam=krnbt=on
 # Run as fast as firmware / board allows
 arm_boost=1
+[pi5]
+# Enable the Mini UART (ttyS0) as the console
+enable_uart=1
+# Enable Bluetooth over the PL011 (ttyAMA0) using the serial bus (serdev)
+dtparam=krnbt=on
