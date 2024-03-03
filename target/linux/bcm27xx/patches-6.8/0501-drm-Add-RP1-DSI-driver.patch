@@ -29,7 +29,7 @@ Signed-off-by: Nick Hollinghurst <nick.hollinghurst@raspberrypi.com>
 
 --- a/drivers/gpu/drm/Kconfig
 +++ b/drivers/gpu/drm/Kconfig
-@@ -355,6 +355,8 @@ source "drivers/gpu/drm/v3d/Kconfig"
+@@ -356,6 +356,8 @@ source "drivers/gpu/drm/v3d/Kconfig"
  
  source "drivers/gpu/drm/vc4/Kconfig"
  
