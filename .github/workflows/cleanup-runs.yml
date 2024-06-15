@@ -1,5 +1,6 @@
 name: Cleanup
-on: [push]
+on:
+  push:
 
 jobs:
   del_runs:
