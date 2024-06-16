@@ -25,7 +25,7 @@ Signed-off-by: Marty Jones <mj8263788@gmail.com>
                - rockchip,rv1108-grf
                - rockchip,rv1108-pmugrf
                - rockchip,rv1126-grf
-@@ -199,6 +200,7 @@ allOf:
+@@ -200,6 +201,7 @@ allOf:
                - rockchip,rk3308-usb2phy-grf
                - rockchip,rk3328-usb2phy-grf
                - rockchip,rk3399-grf

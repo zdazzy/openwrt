@@ -402,7 +402,7 @@ Signed-off-by: Marty Jones <mj8263788@gmail.com>
 +    };
 --- a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
 +++ b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
-@@ -206,7 +206,7 @@ allOf:
+@@ -207,7 +207,7 @@ allOf:
          "usb2phy@[0-9a-f]+$":
            type: object
  
