@@ -218,7 +218,7 @@ Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
  		vcc5v0_usb20_en: vcc5v0-usb20-en {
  			rockchip,pins = <3 RK_PB7 RK_FUNC_GPIO &pcfg_pull_none>;
  		};
-@@ -535,7 +613,7 @@
+@@ -536,7 +614,7 @@
  				};
  			};
  
@@ -227,7 +227,7 @@ Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
  				regulator-name = "vdd_cpu_lit_s0";
  				regulator-always-on;
  				regulator-boot-on;
-@@ -802,6 +880,22 @@
+@@ -803,6 +881,22 @@
  	status = "okay";
  };
  
@@ -250,7 +250,7 @@ Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
  &u2phy2 {
  	status = "okay";
  };
-@@ -830,6 +924,35 @@
+@@ -831,6 +925,35 @@
  	status = "okay";
  };
  
@@ -286,7 +286,7 @@ Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
  &usb_host0_ehci {
  	status = "okay";
  };
-@@ -838,6 +961,20 @@
+@@ -839,6 +962,20 @@
  	status = "okay";
  };
  
@@ -307,7 +307,7 @@ Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
  &usb_host1_ehci {
  	status = "okay";
  };
-@@ -845,3 +982,16 @@
+@@ -846,3 +983,16 @@
  &usb_host1_ohci {
  	status = "okay";
  };
