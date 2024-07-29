@@ -12,7 +12,7 @@ Signed-off-by: Gabor Juhos <juhosg@openwrt.org>
 ---
 --- a/arch/arm/Kconfig
 +++ b/arch/arm/Kconfig
-@@ -133,6 +133,7 @@ config ARM
+@@ -135,6 +135,7 @@ config ARM
  	select HAVE_VIRT_CPU_ACCOUNTING_GEN
  	select HOTPLUG_CORE_SYNC_DEAD if HOTPLUG_CPU
  	select IRQ_FORCED_THREADING
@@ -22,7 +22,7 @@ Signed-off-by: Gabor Juhos <juhosg@openwrt.org>
  	select NEED_DMA_MAP_STATE
 --- a/arch/arm/boot/compressed/Makefile
 +++ b/arch/arm/boot/compressed/Makefile
-@@ -85,6 +85,7 @@ endif
+@@ -86,6 +86,7 @@ endif
  ifeq ($(CONFIG_USE_OF),y)
  OBJS	+= $(libfdt_objs) fdt_check_mem_start.o
  endif
@@ -36,18 +36,12 @@ Signed-off-by: Gabor Juhos <juhosg@openwrt.org>
  	. = ALIGN(4);
  	__ex_table : AT(ADDR(__ex_table) - LOAD_OFFSET) {
  		__start___ex_table = .;
--		ARM_MMU_KEEP(*(__ex_table))
+-		ARM_MMU_KEEP(KEEP(*(__ex_table)))
 +		KEEP(*(__ex_table))
  		__stop___ex_table = .;
  	}
  
-@@ -99,24 +99,24 @@ SECTIONS
- 	}
- 	.init.arch.info : {
- 		__arch_info_begin = .;
--		*(.arch.info.init)
-+		KEEP(*(.arch.info.init))
- 		__arch_info_end = .;
+@@ -104,13 +104,13 @@ SECTIONS
  	}
  	.init.tagtable : {
  		__tagtable_begin = .;
@@ -63,23 +57,9 @@ Signed-off-by: Gabor Juhos <juhosg@openwrt.org>
  		__smpalt_end = .;
  	}
  #endif
- 	.init.pv_table : {
- 		__pv_table_begin = .;
--		*(.pv_table)
-+		KEEP(*(.pv_table))
- 		__pv_table_end = .;
- 	}
- 
 --- a/arch/arm/include/asm/vmlinux.lds.h
 +++ b/arch/arm/include/asm/vmlinux.lds.h
-@@ -42,13 +42,13 @@
- #define PROC_INFO							\
- 		. = ALIGN(4);						\
- 		__proc_info_begin = .;					\
--		*(.proc.info.init)					\
-+		KEEP(*(.proc.info.init))				\
- 		__proc_info_end = .;
- 
+@@ -48,7 +48,7 @@
  #define IDMAP_TEXT							\
  		ALIGN_FUNCTION();					\
  		__idmap_text_start = .;					\
