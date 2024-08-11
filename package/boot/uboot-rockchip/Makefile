@@ -5,9 +5,9 @@
 include $(TOPDIR)/rules.mk
 include $(INCLUDE_DIR)/kernel.mk
 
-PKG_VERSION:=2024.07
+PKG_VERSION:=2024.10-rc2
 PKG_RELEASE:=1
-PKG_HASH:=f591da9ab90ef3d6b3d173766d0ddff90c4ed7330680897486117df390d83c8f
+PKG_HASH:=3849cb16df4860cf0248a32538a5eb636ad4c1323b61535b028d512a6edaa90f
 
 PKG_MAINTAINER:=Tobias Maedel <openwrt@tbspace.de>
 
@@ -213,6 +213,7 @@ define U-Boot/rock-3a-rk3568
     radxa_rock-3a
 endef
 
+
 # RK3588 boards
 
 define U-Boot/Default/rk3588
@@ -222,11 +223,25 @@ define U-Boot/Default/rk3588
   TPL:=rk3588_ddr_lp4_2112MHz_lp5_2400MHz_v1.16.bin
 endef
 
+define U-Boot/nanopi-r6c-rk3588s
+  $(U-Boot/Default/rk3588)
+  NAME:=FriendlyARM NanoPi R6C
+  BUILD_DEVICES:= \
+    friendlyarm_nanopi-r6c
+endef
+
 define U-Boot/nanopi-r6s-rk3588s
   $(U-Boot/Default/rk3588)
-  NAME:=NanoPi R6S
+  NAME:=FriendlyARM NanoPi R6S
   BUILD_DEVICES:= \
     friendlyarm_nanopi-r6s
+endef
+
+define U-Boot/orangepi-5-plus-rk3588
+  $(U-Boot/Default/rk3588)
+  NAME:=ORANGEPI-5-PLUS
+  BUILD_DEVICES:= \
+    xunlong_orangepi-5-plus
 endef
 
 UBOOT_TARGETS := \
@@ -250,7 +265,9 @@ UBOOT_TARGETS := \
   nanopi-r5s-rk3568 \
   radxa-e25-rk3568 \
   rock-3a-rk3568 \
-  nanopi-r6s-rk3588s
+  nanopi-r6c-rk3588s \
+  nanopi-r6s-rk3588s \
+  orangepi-5-plus-rk3588
 
 UBOOT_CONFIGURE_VARS += USE_PRIVATE_LIBGCC=yes
 
