@@ -5,6 +5,7 @@ PKG_DRIVERS += \
 	rtw88-8822b rtw88-8822c rtw88-8723x rtw88-8723d rtw88-8821ce rtw88-8821cu \
 	rtw88-8822be rtw88-8822bu rtw88-8822ce rtw88-8822cu rtw88-8723de rtw88-8723ds \
 	rtw88-8723du rtw89 rtw89-pci rtw89-8851be rtw89-8852ae rtw89-8852b-common \
+	rtw88-8821a rtw88-8821au rtw88-8812au \
 	rtw89-8852be rtw89-8852ce rtw89-8922ae
 
 config-$(call config_package,rtlwifi) += RTL_CARDS RTLWIFI
@@ -48,6 +49,9 @@ config-$(call config_package,rtw88-8723d) += RTW88_8723D
 config-$(call config_package,rtw88-8723de) += RTW88_8723DE
 config-$(call config_package,rtw88-8723ds) += RTW88_8723DS
 config-$(call config_package,rtw88-8723du) += RTW88_8723DU
+config-$(call config_package,rtw88-8821a) += RTW88_8821A
+config-$(call config_package,rtw88-8821au) += RTW88_8821AU
+config-$(call config_package,rtw88-8812au) += RTW88_8812AU
 config-$(CONFIG_PACKAGE_RTW88_DEBUG) += RTW88_DEBUG
 config-$(CONFIG_PACKAGE_RTW88_DEBUGFS) += RTW88_DEBUGFS
 
@@ -255,6 +259,15 @@ define KernelPackage/rtw88-usb
   HIDDEN:=1
 endef
 
+define KernelPackage/rtw88-8821a
+  $(call KernelPackage/mac80211/Default)
+  TITLE:=Realtek RTL8821A family support
+  DEPENDS+= +@DRIVER_11AC_SUPPORT +kmod-rtw88-usb
+  FILES:=$(PKG_BUILD_DIR)/drivers/net/wireless/realtek/rtw88/rtw88_8821a.ko
+  AUTOLOAD:=$(call AutoProbe,rtw88_8821a)
+  HIDDEN:=1
+endef
+
 define KernelPackage/rtw88-8821c
   $(call KernelPackage/mac80211/Default)
   TITLE:=Realtek RTL8821C family support
@@ -298,6 +311,22 @@ define KernelPackage/rtw88-8723d
   FILES:=$(PKG_BUILD_DIR)/drivers/net/wireless/realtek/rtw88/rtw88_8723d.ko
   AUTOLOAD:=$(call AutoProbe,rtw88_8723d)
   HIDDEN:=1
+endef
+
+define KernelPackage/rtw88-8821au
+  $(call KernelPackage/mac80211/Default)
+  TITLE:=Realtek RTL8821AU support
+  DEPENDS+= +kmod-rtw88-8821a +rtl8821a-firmware
+  FILES:=$(PKG_BUILD_DIR)/drivers/net/wireless/realtek/rtw88/rtw88_8821au.ko
+  AUTOLOAD:=$(call AutoProbe,rtw88_8821au)
+endef
+
+define KernelPackage/rtw88-8812au
+  $(call KernelPackage/mac80211/Default)
+  TITLE:=Realtek RTL8812AU support
+  DEPENDS+= +kmod-rtw88-8821a +rtl8812au-firmware
+  FILES:=$(PKG_BUILD_DIR)/drivers/net/wireless/realtek/rtw88/rtw88_8812au.ko
+  AUTOLOAD:=$(call AutoProbe,rtw88_8812au)
 endef
 
 define KernelPackage/rtw88-8821ce
