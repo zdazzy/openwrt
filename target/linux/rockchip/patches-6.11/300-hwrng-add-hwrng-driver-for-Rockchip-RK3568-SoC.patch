@@ -26,7 +26,7 @@ Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 --- a/drivers/char/hw_random/Kconfig
 +++ b/drivers/char/hw_random/Kconfig
-@@ -572,6 +572,20 @@ config HW_RANDOM_JH7110
+@@ -573,6 +573,20 @@ config HW_RANDOM_JH7110
  	  To compile this driver as a module, choose M here.
  	  The module will be called jh7110-trng.
  
