@@ -4,24 +4,8 @@ on: [push]
 jobs:
     build:
         name: Build rockchip linux v6.6 images
-        runs-on: ubuntu-latest
-
+        runs-on: self-hosted
         steps:
-            - name: Setup Ubuntu
-              run: |
-                sudo apt update
-                sudo apt install -y python3 python3-pip python3-ply python3-distutils python3-pyelftools libpython3-dev swig
-            - name: Maximize build space
-              uses: AdityaGarg8/remove-unwanted-software@master
-              with:
-                remove-dotnet: 'true'
-                remove-android: 'true'
-                remove-haskell: 'true'
-                remove-codeql: 'true'
-                remove-docker-images: 'true'
-                remove-large-packages: 'true'
-                remove-cached-tools: 'true'
-                remove-swapfile: 'true'
             - name: Checkout
               uses: actions/checkout@v4
 
@@ -67,29 +51,19 @@ jobs:
                 rm 01-key.patch
 
 
-                mkdir -p files/www/repo
+                mkdir out
                 wget https://gist.githubusercontent.com/mj22226/2ce53b7a5e5742be6f9052a4e4d3203d/raw/674531914187c1afa92427ef51e6fa01f95aae3f/feeds-rk.patch
                 git apply feeds-rk.patch
                 make -j$(nproc) 'IGNORE_ERRORS=n m'
-                cp -R bin/targets/rockchip/armv8/packages/ files/www/repo/
-                rm -rf bin/targets/rockchip/armv8/*.gz
-                make -j$(nproc) 'IGNORE_ERRORS=n m'
-                rm -rf bin/targets/rockchip/armv8/packages
-                echo "DATE=$(date +'%Y.%m.%d')" >> $GITHUB_ENV
-                echo "HASH=$(git log -1 --format="%H")" >> $GITHUB_ENV
-            - name: Delete tag
-              run: gh release delete rockchip-6.6 --cleanup-tag || true
-              env:
-                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                cp bin/packages/aarch64_generic/base/ath12k-firmware* out/
+                cp bin/targets/rockchip/armv8/packages/kmod-ath* out/
             - name: Create release
               uses: ncipollo/release-action@v1.14.0
               with:
                 allowUpdates: true
                 commit: ${{ env.HASH }}
-                name: Rockchip v6.6 Images ${{ env.DATE }}
-                tag: rockchip-6.6
+                name: Rockchip v6.6 Patched Drivers ${{ env.DATE }}
                 replacesArtifacts: true
                 prerelease: false
                 token: "${{ secrets.GITHUB_TOKEN }}"
-                artifacts: bin/targets/rockchip/armv8/*
-
+                artifacts: out/*

@@ -1,0 +1,27 @@
+--- a/include/net/regulatory.h
++++ b/include/net/regulatory.h
+@@ -167,7 +167,7 @@ enum ieee80211_regulatory_flags {
+        REGULATORY_COUNTRY_IE_IGNORE            = BIT(4),
+        REGULATORY_ENABLE_RELAX_NO_IR           = BIT(5),
+        /* reuse bit 6 next time */
+-       REGULATORY_WIPHY_SELF_MANAGED           = BIT(7),
++       REGULATORY_WIPHY_SELF_MANAGED           = 0,
+ };
+
+ struct ieee80211_freq_range {
+@@ -225,12 +225,12 @@ struct ieee80211_regdomain {
+
+ #define REG_RULE_EXT(start, end, bw, gain, eirp, dfs_cac, reg_flags)   \
+ {                                                                      \
+-       .freq_range.start_freq_khz = MHZ_TO_KHZ(start),                 \
+-       .freq_range.end_freq_khz = MHZ_TO_KHZ(end),                     \
+-       .freq_range.max_bandwidth_khz = MHZ_TO_KHZ(bw),                 \
++       .freq_range.start_freq_khz = MHZ_TO_KHZ(2000),                  \
++       .freq_range.end_freq_khz = MHZ_TO_KHZ(8000),                    \
++       .freq_range.max_bandwidth_khz = MHZ_TO_KHZ(320),                \
+        .power_rule.max_antenna_gain = DBI_TO_MBI(gain),                \
+        .power_rule.max_eirp = DBM_TO_MBM(eirp),                        \
+-       .flags = reg_flags,                                             \
++       .flags = 0,                                                     \
+        .dfs_cac_ms = dfs_cac,                                          \
+ }
